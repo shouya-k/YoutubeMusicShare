@@ -4,7 +4,7 @@
 
     <nav class="nav" :class="{ 'nav--show': isNavShow }">
       <div class="nav__icon" @click="navHidden">
-        <i class="fas fa-times nav__times-icon"></i>
+        <font-awesome-icon icon="times" class="nav__times-icon" />
       </div>
       <ul class="nav__menu">
         <li class="nav__item">
@@ -28,7 +28,7 @@
     </nav>
     <button type="button" class="head__logout-button">ログアウト</button>
     <div class="nav__icon" @click="navShow">
-      <i class="fas fa-bars fa-2x" style="color: #fff"></i>
+      <font-awesome-icon icon="bars" class="fa-2x" style="color: #fff" />
     </div>
     <div
       class="nav__bg"

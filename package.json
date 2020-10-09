@@ -11,6 +11,9 @@
     "lint": "yarn lint:js"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/vue-fontawesome": "^2.0.0",
     "@nuxtjs/axios": "^5.12.2",
     "core-js": "^3.6.5",
     "express": "^4.17.1",
@@ -18,7 +21,8 @@
     "graphql": "^15.3.0",
     "graphql-iso-date": "^3.6.1",
     "mongoose": "^5.10.8",
-    "nuxt": "^2.14.6"
+    "nuxt": "^2.14.6",
+    "nuxt-fontawesome": "^0.4.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.1.0",
