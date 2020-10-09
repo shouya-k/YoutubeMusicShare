@@ -1,14 +1,23 @@
 const graphql = require('graphql')
 const Music = require('../models/music')
 
-const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLSchema } = graphql
+const {
+  GraphQLObjectType,
+  GraphQLID,
+  GraphQLString,
+  GraphQLSchema,
+  GraphQLList,
+} = graphql
+const { GraphQLDateTime } = require('graphql-iso-date')
 
 const MusicType = new GraphQLObjectType({
   name: 'Music',
   fields: () => ({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
+    message: { type: GraphQLString },
     category: { type: GraphQLString },
+    url: { type: GraphQLString },
   }),
 })
 
@@ -22,6 +31,12 @@ const RootQuery = new GraphQLObjectType({
         return Music.findById(args.id)
       },
     },
+    musics: {
+      type: new GraphQLList(MusicType),
+      resolve(parent, args) {
+        return Music.find({})
+      },
+    },
   },
 })
 
@@ -32,11 +47,14 @@ const Mutation = new GraphQLObjectType({
       type: MusicType,
       args: {
         name: { type: GraphQLString },
+        message: { type: GraphQLString },
         category: { type: GraphQLString },
+        url: { type: GraphQLString },
       },
       resolve(parent, args) {
         let music = new Music({
           name: args.name,
+          message: args.message,
           category: args.category,
         })
 
