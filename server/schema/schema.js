@@ -8,7 +8,6 @@ const {
   GraphQLSchema,
   GraphQLList,
 } = graphql
-const { GraphQLDateTime } = require('graphql-iso-date')
 
 const MusicType = new GraphQLObjectType({
   name: 'Music',
@@ -52,7 +51,7 @@ const Mutation = new GraphQLObjectType({
         url: { type: GraphQLString },
       },
       resolve(parent, args) {
-        let music = new Music({
+        const music = new Music({
           name: args.name,
           message: args.message,
           category: args.category,
