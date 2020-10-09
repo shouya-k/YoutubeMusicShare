@@ -1,0 +1,23 @@
+// https://www.seojuku.com/blog/responsive-mediaquery.html ブレークポイント参照サイト
+
+$breakpoint-lg: 1024px;
+$breakpoint-md: 896px;
+$breakpoint-sm: 480px;
+
+@mixin mq-lg {
+  @media screen and (max-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+@mixin mq-md {
+  @media screen and (max-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin mq-sm {
+  @media screen and (max-width: $breakpoint-sm) {
+    @content;
+  }
+}
