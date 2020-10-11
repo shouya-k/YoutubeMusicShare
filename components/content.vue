@@ -1,7 +1,7 @@
 <template>
   <main class="main">
-    <div class="container">
-      <div class="user">
+    <div class="content">
+      <div class="content__user user">
         <img class="user__img" alt="" />
 
         <div class="user__name">shouya.kousuge</div>
@@ -10,40 +10,40 @@
           <font-awesome-icon icon="ellipsis-v"></font-awesome-icon>
         </div>
       </div>
-      <div class="container__information">
-        <div class="container__movie">
+      <div class="content__information">
+        <div class="content__movie">
           <iframe
             src="https://www.youtube.com/embed/fzQ6gRAEoy0"
-            class="container__iframe"
+            class="content__iframe"
             frameborder="0"
             allowfullscreen
           ></iframe>
         </div>
-        <div class="container__title">
+        <div class="content__title">
           <a>Shelter</a>
         </div>
-        <p class="container__favorite-reason">素晴らしい音楽です。</p>
+        <p class="content__message">素晴らしい音楽です。</p>
       </div>
-      <div class="container__option">
-        <div class="container__category">
-          <a class="container__category-link" href="#"> POP </a>
+      <div class="content__option">
+        <div class="content__category">
+          <a class="content__category-link" href="#"> POP </a>
         </div>
-        <a class="container__option-icon" href="">
+        <a class="content__option-icon" href="">
           <font-awesome-icon
             icon="heart"
-            class="container__option-icon--heart"
+            class="content__option-icon--heart"
           ></font-awesome-icon>
         </a>
-        <a class="container__option-icon" href="">
+        <a class="content__option-icon" href="">
           <font-awesome-icon
             icon="share-alt"
-            class="container__option-icon--share"
+            class="content__option-icon--share"
           ></font-awesome-icon>
         </a>
       </div>
     </div>
-    <div class="container">
-      <div class="user">
+    <div class="content">
+      <div class="content__user user">
         <img class="user__img" alt="" />
 
         <div class="user__name">shouya.kousuge</div>
@@ -52,40 +52,40 @@
           <font-awesome-icon icon="ellipsis-v"></font-awesome-icon>
         </div>
       </div>
-      <div class="container__information">
-        <div class="container__movie">
+      <div class="content__information">
+        <div class="content__movie">
           <iframe
             src="https://www.youtube.com/embed/fzQ6gRAEoy0"
-            class="container__iframe"
+            class="content__iframe"
             frameborder="0"
             allowfullscreen
           ></iframe>
         </div>
-        <div class="container__title">
+        <div class="content__title">
           <a>Shelter</a>
         </div>
-        <p class="container__favorite-reason">素晴らしい音楽です。</p>
+        <p class="content__message">素晴らしい音楽です。</p>
       </div>
-      <div class="container__option">
-        <div class="container__category">
-          <a class="container__category-link" href="#"> POP </a>
+      <div class="content__option">
+        <div class="content__category">
+          <a class="content__category-link" href="#"> POP </a>
         </div>
-        <a class="container__option-icon" href="">
+        <a class="content__option-icon" href="">
           <font-awesome-icon
             icon="heart"
-            class="container__option-icon--heart"
+            class="content__option-icon--heart"
           ></font-awesome-icon>
         </a>
-        <a class="container__option-icon" href="">
+        <a class="content__option-icon" href="">
           <font-awesome-icon
             icon="share-alt"
-            class="container__option-icon--share"
+            class="content__option-icon--share"
           ></font-awesome-icon>
         </a>
       </div>
     </div>
-    <div class="container">
-      <div class="user">
+    <div class="content">
+      <div class="content__user user">
         <img class="user__img" alt="" />
 
         <div class="user__name">shouya.kousuge</div>
@@ -94,40 +94,40 @@
           <font-awesome-icon icon="ellipsis-v"></font-awesome-icon>
         </div>
       </div>
-      <div class="container__information">
-        <div class="container__movie">
+      <div class="content__information">
+        <div class="content__movie">
           <iframe
             src="https://www.youtube.com/embed/fzQ6gRAEoy0"
-            class="container__iframe"
+            class="content__iframe"
             frameborder="0"
             allowfullscreen
           ></iframe>
         </div>
-        <div class="container__title">
+        <div class="content__title">
           <a>Shelter</a>
         </div>
-        <p class="container__favorite-reason">素晴らしい音楽です。</p>
+        <p class="content__message">素晴らしい音楽です。</p>
       </div>
-      <div class="container__option">
-        <div class="container__category">
-          <a class="container__category-link" href="#"> POP </a>
+      <div class="content__option">
+        <div class="content__category">
+          <a class="content__category-link" href="#"> POP </a>
         </div>
-        <a class="container__option-icon" href="">
+        <a class="content__option-icon" href="">
           <font-awesome-icon
             icon="heart"
-            class="container__option-icon--heart"
+            class="content__option-icon--heart"
           ></font-awesome-icon>
         </a>
-        <a class="container__option-icon" href="">
+        <a class="content__option-icon" href="">
           <font-awesome-icon
             icon="share-alt"
-            class="container__option-icon--share"
+            class="content__option-icon--share"
           ></font-awesome-icon>
         </a>
       </div>
     </div>
-    <div class="container">
-      <div class="user">
+    <div class="content">
+      <div class="content__user user">
         <img class="user__img" alt="" />
 
         <div class="user__name">shouya.kousuge</div>
@@ -136,34 +136,34 @@
           <font-awesome-icon icon="ellipsis-v"></font-awesome-icon>
         </div>
       </div>
-      <div class="container__information">
-        <div class="container__movie">
+      <div class="content__information">
+        <div class="content__movie">
           <iframe
             src="https://www.youtube.com/embed/fzQ6gRAEoy0"
-            class="container__iframe"
+            class="content__iframe"
             frameborder="0"
             allowfullscreen
           ></iframe>
         </div>
-        <div class="container__title">
+        <div class="content__title">
           <a>Shelter</a>
         </div>
-        <p class="container__favorite-reason">素晴らしい音楽です。</p>
+        <p class="content__message">素晴らしい音楽です。</p>
       </div>
-      <div class="container__option">
-        <div class="container__category">
-          <a class="container__category-link" href="#"> POP </a>
+      <div class="content__option">
+        <div class="content__category">
+          <a class="content__category-link" href="#"> POP </a>
         </div>
-        <a class="container__option-icon" href="">
+        <a class="content__option-icon" href="">
           <font-awesome-icon
             icon="heart"
-            class="container__option-icon--heart"
+            class="content__option-icon--heart"
           ></font-awesome-icon>
         </a>
-        <a class="container__option-icon" href="">
+        <a class="content__option-icon" href="">
           <font-awesome-icon
             icon="share-alt"
-            class="container__option-icon--share"
+            class="content__option-icon--share"
           ></font-awesome-icon>
         </a>
       </div>
@@ -180,6 +180,7 @@ export default {}
 
 .main {
   width: 100%;
+  padding-bottom: 40px;
   position: absolute;
   top: 12%;
   background-color: rgb(216, 216, 216);
@@ -193,15 +194,19 @@ export default {}
   }
 }
 
-.container {
+.content {
   width: 40%;
   max-width: 600px;
-  margin: 2rem auto;
+  margin: 3rem auto;
   padding: 1rem;
   border: 2px solid #000000;
   border-radius: 4px;
   background: #fff;
   box-shadow: 4px 4px 6px gray;
+
+  &__user {
+    margin: 1.5rem 1rem;
+  }
 
   &__movie {
     position: relative;
@@ -231,7 +236,7 @@ export default {}
     align-items: center;
   }
 
-  &__favorite-reason {
+  &__message {
     font-size: 2.1rem;
     padding-left: 5px;
     margin-left: 5px;
@@ -277,7 +282,7 @@ export default {}
     }
   }
 
-  // .container
+  // .content
   @include mq-sm {
     width: 90%;
     margin: 2rem auto 1rem;
@@ -287,7 +292,7 @@ export default {}
       height: 4.8rem;
     }
 
-    &__favorite-reason {
+    &__message {
       font-size: 1.6rem;
     }
   }
@@ -295,7 +300,6 @@ export default {}
 
 .user {
   display: flex;
-  margin: 1.5rem 1rem;
 
   &__name {
     line-height: 3rem;
