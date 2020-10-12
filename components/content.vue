@@ -1,6 +1,6 @@
 <template>
   <main class="main">
-    <div class="content">
+    <div class="content" v-for="music in musics" :key="music.id">
       <div class="content__user user">
         <img class="user__img" alt="" />
 
@@ -13,146 +13,20 @@
       <div class="content__information">
         <div class="content__movie">
           <iframe
-            src="https://www.youtube.com/embed/fzQ6gRAEoy0"
+            :src="music.url"
             class="content__iframe"
             frameborder="0"
             allowfullscreen
           ></iframe>
         </div>
         <div class="content__title">
-          <a>Shelter</a>
+          <a>{{ music.name }}</a>
         </div>
-        <p class="content__message">素晴らしい音楽です。</p>
+        <p class="content__message">{{ music.message }}</p>
       </div>
       <div class="content__option">
         <div class="content__category">
-          <a class="content__category-link" href="#"> POP </a>
-        </div>
-        <a class="content__option-icon" href="">
-          <font-awesome-icon
-            icon="heart"
-            class="content__option-icon--heart"
-          ></font-awesome-icon>
-        </a>
-        <a class="content__option-icon" href="">
-          <font-awesome-icon
-            icon="share-alt"
-            class="content__option-icon--share"
-          ></font-awesome-icon>
-        </a>
-      </div>
-    </div>
-    <div class="content">
-      <div class="content__user user">
-        <img class="user__img" alt="" />
-
-        <div class="user__name">shouya.kousuge</div>
-        <!-- 詳細アイコン -->
-        <div class="user__editing-icon">
-          <font-awesome-icon icon="ellipsis-v"></font-awesome-icon>
-        </div>
-      </div>
-      <div class="content__information">
-        <div class="content__movie">
-          <iframe
-            src="https://www.youtube.com/embed/fzQ6gRAEoy0"
-            class="content__iframe"
-            frameborder="0"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <div class="content__title">
-          <a>Shelter</a>
-        </div>
-        <p class="content__message">素晴らしい音楽です。</p>
-      </div>
-      <div class="content__option">
-        <div class="content__category">
-          <a class="content__category-link" href="#"> POP </a>
-        </div>
-        <a class="content__option-icon" href="">
-          <font-awesome-icon
-            icon="heart"
-            class="content__option-icon--heart"
-          ></font-awesome-icon>
-        </a>
-        <a class="content__option-icon" href="">
-          <font-awesome-icon
-            icon="share-alt"
-            class="content__option-icon--share"
-          ></font-awesome-icon>
-        </a>
-      </div>
-    </div>
-    <div class="content">
-      <div class="content__user user">
-        <img class="user__img" alt="" />
-
-        <div class="user__name">shouya.kousuge</div>
-        <!-- 詳細アイコン -->
-        <div class="user__editing-icon">
-          <font-awesome-icon icon="ellipsis-v"></font-awesome-icon>
-        </div>
-      </div>
-      <div class="content__information">
-        <div class="content__movie">
-          <iframe
-            src="https://www.youtube.com/embed/fzQ6gRAEoy0"
-            class="content__iframe"
-            frameborder="0"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <div class="content__title">
-          <a>Shelter</a>
-        </div>
-        <p class="content__message">素晴らしい音楽です。</p>
-      </div>
-      <div class="content__option">
-        <div class="content__category">
-          <a class="content__category-link" href="#"> POP </a>
-        </div>
-        <a class="content__option-icon" href="">
-          <font-awesome-icon
-            icon="heart"
-            class="content__option-icon--heart"
-          ></font-awesome-icon>
-        </a>
-        <a class="content__option-icon" href="">
-          <font-awesome-icon
-            icon="share-alt"
-            class="content__option-icon--share"
-          ></font-awesome-icon>
-        </a>
-      </div>
-    </div>
-    <div class="content">
-      <div class="content__user user">
-        <img class="user__img" alt="" />
-
-        <div class="user__name">shouya.kousuge</div>
-        <!-- 詳細アイコン -->
-        <div class="user__editing-icon">
-          <font-awesome-icon icon="ellipsis-v"></font-awesome-icon>
-        </div>
-      </div>
-      <div class="content__information">
-        <div class="content__movie">
-          <iframe
-            src="https://www.youtube.com/embed/fzQ6gRAEoy0"
-            class="content__iframe"
-            frameborder="0"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <div class="content__title">
-          <a>Shelter</a>
-        </div>
-        <p class="content__message">素晴らしい音楽です。</p>
-      </div>
-      <div class="content__option">
-        <div class="content__category">
-          <a class="content__category-link" href="#"> POP </a>
+          <a class="content__category-link" href="#">{{ music.category }}</a>
         </div>
         <a class="content__option-icon" href="">
           <font-awesome-icon
@@ -172,7 +46,13 @@
 </template>
 
 <script>
-export default {}
+import { MUSIC_LIST } from '../apollo/queries/queries'
+export default {
+  name: 'MusicList',
+  apollo: {
+    musics: MUSIC_LIST,
+  },
+}
 </script>
 
 <style lang="scss" scoped>
