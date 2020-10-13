@@ -1,11 +1,19 @@
 <template>
   <div>
-    <h1>投稿画面</h1>
+    <Header></Header>
+    <Form></Form>
   </div>
 </template>
 
 <script>
-export default {}
+import Header from '../components/header'
+import Form from '../components/posts-form'
+export default {
+  components: {
+    Header,
+    Form,
+  },
+}
 </script>
 
 <style lang="scss" scoped></style>
