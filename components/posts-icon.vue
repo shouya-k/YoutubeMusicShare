@@ -16,7 +16,7 @@ export default {}
 
 .footer {
   &__icon {
-    margin: 3rem;
+    margin: 30px;
     position: fixed;
     right: 0;
     bottom: 0;
@@ -32,7 +32,7 @@ export default {}
 
   @include mq-sm {
     &__icon {
-      margin: 1rem;
+      margin: 10px;
     }
 
     &__plus-icon {

@@ -8,11 +8,19 @@
       </div>
       <ul class="nav__menu">
         <li class="nav__item">
-          <a href="./my-page.html" class="nav__link">マイページ</a>
+          <router-link
+            to="/my-page"
+            class="nav__link"
+            active-class="nav__link--active"
+            >マイページ</router-link
+          >
         </li>
         <li class="nav__item">
-          <a href="index.html" class="nav__link nav__link--active"
-            >タイムライン</a
+          <router-link
+            to="/timeline"
+            class="nav__link"
+            active-class="nav__link--active"
+            >タイムライン</router-link
           >
         </li>
         <li class="nav__item">
@@ -73,7 +81,7 @@ export default {
   z-index: 3;
 
   &__logo {
-    padding: 0 1rem;
+    padding: 0 10px;
     margin: auto 0;
     font-size: 2.6rem;
     font-weight: bold;
@@ -83,10 +91,10 @@ export default {
   }
 
   &__logout-button {
-    height: 4rem;
+    height: 40px;
     font-size: 1.8rem;
     font-weight: bold;
-    margin: auto 1rem auto auto;
+    margin: auto 10px auto auto;
     color: #fff;
     background-color: rgb(0, 0, 0);
     border: 2px solid #fff;
@@ -119,10 +127,10 @@ export default {
   }
 
   &__item {
-    padding-left: 4rem;
+    padding-left: 40px;
 
     &:first-child {
-      padding-left: 6rem;
+      padding-left: 60px;
     }
 
     &--logout {
@@ -134,7 +142,7 @@ export default {
     color: #fff;
     display: block;
     text-align: center;
-    line-height: 4.2rem;
+    line-height: 42px;
 
     &:hover {
       border-bottom: 2px solid rgb(0, 123, 255);
@@ -171,19 +179,19 @@ export default {
       float: right;
       cursor: pointer;
       font-size: 3rem;
-      margin-top: 1rem;
-      margin-right: 1rem;
+      margin-top: 10px;
+      margin-right: 10px;
     }
 
     &__menu {
       display: flex;
       flex-direction: column;
-      padding: 1rem;
+      padding: 10px;
     }
 
     &__item {
       text-align: center;
-      margin: 2rem 0;
+      margin: 20px 0;
       padding: 0;
 
       &--logout {
@@ -193,14 +201,14 @@ export default {
       }
 
       &:first-child {
-        margin-top: 5rem;
+        margin-top: 50px;
         padding-left: 0;
       }
     }
 
     &__icon {
       display: block;
-      margin: auto 1rem auto auto;
+      margin: auto 10px auto auto;
     }
 
     &__bg {

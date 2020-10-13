@@ -77,15 +77,15 @@ export default {
 .content {
   width: 40%;
   max-width: 600px;
-  margin: 3rem auto;
-  padding: 1rem;
+  margin: 30px auto;
+  padding: 10px;
   border: 2px solid #000000;
   border-radius: 4px;
   background: #fff;
   box-shadow: 4px 4px 6px gray;
 
   &__user {
-    margin: 1.5rem 1rem;
+    margin: 15px 10px;
   }
 
   &__movie {
@@ -105,12 +105,12 @@ export default {
   }
 
   &__title {
-    height: 7.2rem;
+    height: 72px;
     font-size: 3.6rem;
     font-weight: bold;
     text-align: center;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -124,13 +124,13 @@ export default {
   }
 
   &__option {
-    margin-top: 3rem;
+    margin-top: 30px;
     display: flex;
     justify-content: flex-end;
 
     &-icon {
       display: block;
-      padding: 0 1rem;
+      padding: 0 10px;
       cursor: pointer;
     }
 
@@ -150,9 +150,9 @@ export default {
     border: 2px solid #000000;
     border-radius: 6px;
     box-shadow: 2px 2px 4px gray;
-    padding: 0 1rem;
+    padding: 0 10px;
     font-size: 1.6rem;
-    line-height: 3.2rem;
+    line-height: 32px;
     margin-right: auto;
 
     &-link {
@@ -165,11 +165,11 @@ export default {
   // .content
   @include mq-sm {
     width: 90%;
-    margin: 2rem auto 1rem;
+    margin: 20px auto 10px;
 
     &__title {
       font-size: 2.4rem;
-      height: 4.8rem;
+      height: 48px;
     }
 
     &__message {
@@ -182,7 +182,7 @@ export default {
   display: flex;
 
   &__name {
-    line-height: 3rem;
+    line-height: 30px;
     font-size: 2.5rem;
     flex: 1;
   }
@@ -194,11 +194,11 @@ export default {
   }
 
   &__img {
-    width: 3rem;
-    height: 3rem;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
-    margin-right: 1rem;
+    margin-right: 10px;
     border-radius: 50%;
   }
 }
@@ -215,10 +215,10 @@ export default {
 
   &__inner {
     font-size: 2.4rem;
-    padding: 1rem;
-    width: 15rem;
+    padding: 15px;
+    width: 150px;
     position: absolute;
-    top: -1rem;
+    top: -10px;
     left: 0;
     z-index: 2;
     border: 1px solid black;
@@ -248,7 +248,7 @@ export default {
 .modal {
   width: 600px;
   height: 240px;
-  padding: 2rem;
+  padding: 20px;
   background-color: #fff;
   border: 1px solid black;
   border-radius: 2rem;
@@ -273,7 +273,7 @@ export default {
 
   &__text {
     font-size: 2.4rem;
-    padding: 4rem 0 6.5rem;
+    padding: 40px 0 65px;
   }
 
   &__buttons {
@@ -282,7 +282,7 @@ export default {
 
   &__button {
     cursor: pointer;
-    padding: 0.5rem 2rem;
+    padding: 5px 20px;
     border-radius: 6px;
   }
 
@@ -353,7 +353,7 @@ export default {
 
 .footer {
   &__icon {
-    margin: 3rem;
+    margin: 30px;
     position: fixed;
     right: 0;
     bottom: 0;
@@ -369,7 +369,7 @@ export default {
 
   @include mq-sm {
     &__icon {
-      margin: 1rem;
+      margin: 10px;
     }
 
     &__plus-icon {
