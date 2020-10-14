@@ -1,11 +1,11 @@
 <template>
   <main class="main-post">
-    <form class="post">
+    <form class="post" @submit.prevent="addMusic">
       <h1 class="post__title">オススメの投稿</h1>
       <div class="post__input-text">
         <input
           id="music-url"
-          v-model="url"
+          v-model="posts.music.url"
           class="post__input"
           type="url"
           placeholder="曲のURL"
@@ -14,7 +14,7 @@
       <div class="post__input-text">
         <input
           id="music-title"
-          v-model="title"
+          v-model="posts.music.name"
           class="post__input"
           type="text"
           placeholder="曲のタイトル"
@@ -23,7 +23,7 @@
       <div class="post__input-text">
         <input
           id="favorite-reason"
-          v-model="favorite"
+          v-model="posts.music.message"
           class="post__input"
           type="text"
           placeholder="オススメの理由"
@@ -34,67 +34,62 @@
         <ul class="category__menu">
           <li class="category__item">
             <input
-              v-model="category"
+              v-model="posts.music.category"
               type="radio"
               class="category__input"
-              value="ロック"
+              value="rock"
             />
             ロック
           </li>
           <li class="category__item">
             <input
-              v-model="category"
+              v-model="posts.music.category"
               type="radio"
               class="category__input"
-              value="ジャズ"
+              value="jazz"
             />
             ジャズ
           </li>
           <li class="category__item">
             <input
-              v-model="category"
+              v-model="posts.music.category"
               type="radio"
               class="category__input"
-              value="クラシック"
+              value="classical"
             />
             クラシック
           </li>
           <li class="category__item">
             <input
-              v-model="category"
+              v-model="posts.music.category"
               type="radio"
               class="category__input"
-              value="ポップス"
+              value="pop"
             />
             ポップス
           </li>
           <li class="category__item">
             <input
-              v-model="category"
+              v-model="posts.music.category"
               type="radio"
               class="category__input"
-              value="J-POP"
+              value="j-pop"
             />
             J-POP
           </li>
           <li class="category__item">
             <input
-              v-model="category"
+              v-model="posts.music.category"
               type="radio"
               class="category__input"
-              value="アニソン"
+              value="anime"
             />
             アニソン
           </li>
         </ul>
       </div>
       <div class="post__submit">
-        <button
-          class="post__submit-button"
-          type="submit"
-          value="send"
-          @click="submit"
-        >
+        <button class="post__submit-button" type="submit" value="send">
           投稿する
         </button>
       </div>
@@ -103,14 +98,41 @@
 </template>
 
 <script>
+import { ADD_MUSIC } from '../apollo/queries/queries'
 export default {
   data() {
     return {
-      url: '',
-      title: '',
-      favorite: '',
-      category: 'ロック',
+      posts: {
+        music: {
+          url: '',
+          name: '',
+          message: '',
+          category: 'rock',
+        },
+      },
     }
+  },
+  methods: {
+    addMusic() {
+      const { name, message, category, url } = this.posts.music
+      this.$apollo
+        .mutate({
+          mutation: ADD_MUSIC,
+          variables: {
+            name,
+            message,
+            category,
+            url,
+          },
+        })
+        .then((data) => {
+          console.log(data)
+          location.replace('/timeline')
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
   },
 }
 </script>
