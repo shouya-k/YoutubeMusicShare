@@ -127,7 +127,8 @@ export default {
         })
         .then((data) => {
           console.log(data)
-          this.$router.push('/timeline')
+          // this.$router.push('/timeline') だとページがリロードされず投稿が反映されない。
+          location.replace('/timeline')
         })
         .catch((error) => {
           console.log(error)
