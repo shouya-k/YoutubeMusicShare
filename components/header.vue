@@ -8,19 +8,19 @@
       </div>
       <ul class="nav__menu">
         <li class="nav__item">
-          <router-link
+          <nuxt-link
             to="/my-page"
             class="nav__link"
             active-class="nav__link--active"
-            >マイページ</router-link
+            >マイページ</nuxt-link
           >
         </li>
         <li class="nav__item">
-          <router-link
+          <nuxt-link
             to="/timeline"
             class="nav__link"
             active-class="nav__link--active"
-            >タイムライン</router-link
+            >タイムライン</nuxt-link
           >
         </li>
         <li class="nav__item">

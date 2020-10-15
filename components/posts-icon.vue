@@ -1,10 +1,10 @@
 <template>
-  <router-link to="/posts" class="footer__icon">
+  <nuxt-link to="/posts" class="footer__icon">
     <font-awesome-icon
       icon="plus-circle"
       class="footer__plus-icon"
     ></font-awesome-icon>
-  </router-link>
+  </nuxt-link>
 </template>
 
 <script>

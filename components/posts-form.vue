@@ -127,7 +127,7 @@ export default {
         })
         .then((data) => {
           console.log(data)
-          location.replace('/timeline')
+          this.$router.push('/timeline')
         })
         .catch((error) => {
           console.log(error)
