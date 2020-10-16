@@ -55,6 +55,7 @@ const Mutation = new GraphQLObjectType({
           name: args.name,
           message: args.message,
           category: args.category,
+          url: args.url,
         })
 
         return music.save()

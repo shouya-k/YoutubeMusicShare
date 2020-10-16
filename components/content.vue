@@ -1,11 +1,10 @@
 <template>
   <main class="main">
-    <div class="content">
+    <div v-for="music in musics" :key="music.id" class="content">
       <div class="content__user user">
         <img class="user__img" alt="" />
 
         <div class="user__name">shouya.kousuge</div>
-        <!-- 詳細アイコン -->
         <div class="user__editing-icon">
           <font-awesome-icon icon="ellipsis-v"></font-awesome-icon>
         </div>
@@ -13,146 +12,20 @@
       <div class="content__information">
         <div class="content__movie">
           <iframe
-            src="https://www.youtube.com/embed/fzQ6gRAEoy0"
+            :src="getURL(music.url)"
             class="content__iframe"
             frameborder="0"
             allowfullscreen
           ></iframe>
         </div>
         <div class="content__title">
-          <a>Shelter</a>
+          <a>{{ music.name }}</a>
         </div>
-        <p class="content__message">素晴らしい音楽です。</p>
+        <p class="content__message">{{ music.message }}</p>
       </div>
       <div class="content__option">
-        <div class="content__category">
-          <a class="content__category-link" href="#"> POP </a>
-        </div>
-        <a class="content__option-icon" href="">
-          <font-awesome-icon
-            icon="heart"
-            class="content__option-icon--heart"
-          ></font-awesome-icon>
-        </a>
-        <a class="content__option-icon" href="">
-          <font-awesome-icon
-            icon="share-alt"
-            class="content__option-icon--share"
-          ></font-awesome-icon>
-        </a>
-      </div>
-    </div>
-    <div class="content">
-      <div class="content__user user">
-        <img class="user__img" alt="" />
-
-        <div class="user__name">shouya.kousuge</div>
-        <!-- 詳細アイコン -->
-        <div class="user__editing-icon">
-          <font-awesome-icon icon="ellipsis-v"></font-awesome-icon>
-        </div>
-      </div>
-      <div class="content__information">
-        <div class="content__movie">
-          <iframe
-            src="https://www.youtube.com/embed/fzQ6gRAEoy0"
-            class="content__iframe"
-            frameborder="0"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <div class="content__title">
-          <a>Shelter</a>
-        </div>
-        <p class="content__message">素晴らしい音楽です。</p>
-      </div>
-      <div class="content__option">
-        <div class="content__category">
-          <a class="content__category-link" href="#"> POP </a>
-        </div>
-        <a class="content__option-icon" href="">
-          <font-awesome-icon
-            icon="heart"
-            class="content__option-icon--heart"
-          ></font-awesome-icon>
-        </a>
-        <a class="content__option-icon" href="">
-          <font-awesome-icon
-            icon="share-alt"
-            class="content__option-icon--share"
-          ></font-awesome-icon>
-        </a>
-      </div>
-    </div>
-    <div class="content">
-      <div class="content__user user">
-        <img class="user__img" alt="" />
-
-        <div class="user__name">shouya.kousuge</div>
-        <!-- 詳細アイコン -->
-        <div class="user__editing-icon">
-          <font-awesome-icon icon="ellipsis-v"></font-awesome-icon>
-        </div>
-      </div>
-      <div class="content__information">
-        <div class="content__movie">
-          <iframe
-            src="https://www.youtube.com/embed/fzQ6gRAEoy0"
-            class="content__iframe"
-            frameborder="0"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <div class="content__title">
-          <a>Shelter</a>
-        </div>
-        <p class="content__message">素晴らしい音楽です。</p>
-      </div>
-      <div class="content__option">
-        <div class="content__category">
-          <a class="content__category-link" href="#"> POP </a>
-        </div>
-        <a class="content__option-icon" href="">
-          <font-awesome-icon
-            icon="heart"
-            class="content__option-icon--heart"
-          ></font-awesome-icon>
-        </a>
-        <a class="content__option-icon" href="">
-          <font-awesome-icon
-            icon="share-alt"
-            class="content__option-icon--share"
-          ></font-awesome-icon>
-        </a>
-      </div>
-    </div>
-    <div class="content">
-      <div class="content__user user">
-        <img class="user__img" alt="" />
-
-        <div class="user__name">shouya.kousuge</div>
-        <!-- 詳細アイコン -->
-        <div class="user__editing-icon">
-          <font-awesome-icon icon="ellipsis-v"></font-awesome-icon>
-        </div>
-      </div>
-      <div class="content__information">
-        <div class="content__movie">
-          <iframe
-            src="https://www.youtube.com/embed/fzQ6gRAEoy0"
-            class="content__iframe"
-            frameborder="0"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <div class="content__title">
-          <a>Shelter</a>
-        </div>
-        <p class="content__message">素晴らしい音楽です。</p>
-      </div>
-      <div class="content__option">
-        <div class="content__category">
-          <a class="content__category-link" href="#"> POP </a>
+        <div class="content__category" :class="[music.category]">
+          <a class="content__category-link" href="#">{{ music.category }}</a>
         </div>
         <a class="content__option-icon" href="">
           <font-awesome-icon
@@ -172,7 +45,29 @@
 </template>
 
 <script>
-export default {}
+import { MUSIC_LIST } from '../apollo/queries/queries'
+export default {
+  name: 'MusicList',
+  apollo: {
+    musics: MUSIC_LIST,
+  },
+  methods: {
+    getURL(url) {
+      const musicID = this.getID(url)
+      return `//www.youtube.com/embed/${musicID}`
+    },
+    getID(url) {
+      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|v=)([^#]*).*/
+      const match = url.match(regExp)
+
+      if (match && match[2].length === 11) {
+        return match[2]
+      } else {
+        return 'error'
+      }
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -197,15 +92,15 @@ export default {}
 .content {
   width: 40%;
   max-width: 600px;
-  margin: 3rem auto;
-  padding: 1rem;
+  margin: 30px auto;
+  padding: 10px;
   border: 2px solid #000000;
   border-radius: 4px;
   background: #fff;
   box-shadow: 4px 4px 6px gray;
 
   &__user {
-    margin: 1.5rem 1rem;
+    margin: 15px 10px;
   }
 
   &__movie {
@@ -225,12 +120,12 @@ export default {}
   }
 
   &__title {
-    height: 7.2rem;
+    height: 72px;
     font-size: 3.6rem;
     font-weight: bold;
     text-align: center;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -244,13 +139,13 @@ export default {}
   }
 
   &__option {
-    margin-top: 3rem;
+    margin-top: 30px;
     display: flex;
     justify-content: flex-end;
 
     &-icon {
       display: block;
-      padding: 0 1rem;
+      padding: 0 10px;
       cursor: pointer;
     }
 
@@ -270,9 +165,9 @@ export default {}
     border: 2px solid #000000;
     border-radius: 6px;
     box-shadow: 2px 2px 4px gray;
-    padding: 0 1rem;
+    padding: 0 10px;
     font-size: 1.6rem;
-    line-height: 3.2rem;
+    line-height: 32px;
     margin-right: auto;
 
     &-link {
@@ -285,11 +180,11 @@ export default {}
   // .content
   @include mq-sm {
     width: 90%;
-    margin: 2rem auto 1rem;
+    margin: 20px auto 10px;
 
     &__title {
       font-size: 2.4rem;
-      height: 4.8rem;
+      height: 48px;
     }
 
     &__message {
@@ -302,7 +197,7 @@ export default {}
   display: flex;
 
   &__name {
-    line-height: 3rem;
+    line-height: 30px;
     font-size: 2.5rem;
     flex: 1;
   }
@@ -314,11 +209,11 @@ export default {}
   }
 
   &__img {
-    width: 3rem;
-    height: 3rem;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
-    margin-right: 1rem;
+    margin-right: 10px;
     border-radius: 50%;
   }
 }
@@ -335,10 +230,10 @@ export default {}
 
   &__inner {
     font-size: 2.4rem;
-    padding: 1rem;
-    width: 15rem;
+    padding: 15px;
+    width: 150px;
     position: absolute;
-    top: -1rem;
+    top: -10px;
     left: 0;
     z-index: 2;
     border: 1px solid black;
@@ -368,7 +263,7 @@ export default {}
 .modal {
   width: 600px;
   height: 240px;
-  padding: 2rem;
+  padding: 20px;
   background-color: #fff;
   border: 1px solid black;
   border-radius: 2rem;
@@ -393,7 +288,7 @@ export default {}
 
   &__text {
     font-size: 2.4rem;
-    padding: 4rem 0 6.5rem;
+    padding: 40px 0 65px;
   }
 
   &__buttons {
@@ -402,7 +297,7 @@ export default {}
 
   &__button {
     cursor: pointer;
-    padding: 0.5rem 2rem;
+    padding: 5px 20px;
     border-radius: 6px;
   }
 
@@ -459,6 +354,10 @@ export default {}
   padding: 0;
 }
 
+.POP {
+  background-color: #fee21d;
+}
+
 .ポップス {
   background-color: #fee21d;
 }
@@ -473,7 +372,7 @@ export default {}
 
 .footer {
   &__icon {
-    margin: 3rem;
+    margin: 30px;
     position: fixed;
     right: 0;
     bottom: 0;
@@ -489,7 +388,7 @@ export default {}
 
   @include mq-sm {
     &__icon {
-      margin: 1rem;
+      margin: 10px;
     }
 
     &__plus-icon {
