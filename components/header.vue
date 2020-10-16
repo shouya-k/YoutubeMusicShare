@@ -24,13 +24,25 @@
           >
         </li>
         <li class="nav__item">
-          <a href="#" class="nav__link">カテゴリ</a>
+          <nuxt-link
+            to="/category"
+            class="nav__link"
+            active-class="nav__link--active"
+            >カテゴリ</nuxt-link
+          >
         </li>
         <li class="nav__item">
-          <a href="#" class="nav__link">ランキング</a>
+          <nuxt-link
+            to="/ranking"
+            class="nav__link"
+            active-class="nav__link--active"
+            >ランキング</nuxt-link
+          >
         </li>
         <li class="nav__item nav__item--logout">
-          <a href="#" class="nav__link">ログアウト</a>
+          <nuxt-link to="/" class="nav__link" active-class="nav__link--active"
+            >ログアウト</nuxt-link
+          >
         </li>
       </ul>
     </nav>
