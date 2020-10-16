@@ -1,11 +1,10 @@
 <template>
   <main class="main">
-    <div class="content" v-for="music in musics" :key="music.id">
+    <div v-for="music in musics" :key="music.id" class="content">
       <div class="content__user user">
         <img class="user__img" alt="" />
 
         <div class="user__name">shouya.kousuge</div>
-        <!-- 詳細アイコン -->
         <div class="user__editing-icon">
           <font-awesome-icon icon="ellipsis-v"></font-awesome-icon>
         </div>
@@ -25,7 +24,7 @@
         <p class="content__message">{{ music.message }}</p>
       </div>
       <div class="content__option">
-        <div class="content__category">
+        <div class="content__category" :class="[music.category]">
           <a class="content__category-link" href="#">{{ music.category }}</a>
         </div>
         <a class="content__option-icon" href="">
@@ -353,6 +352,10 @@ export default {
 .クラシック {
   background-color: #999999;
   padding: 0;
+}
+
+.POP {
+  background-color: #fee21d;
 }
 
 .ポップス {

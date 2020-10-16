@@ -37,7 +37,7 @@
               v-model="posts.music.category"
               type="radio"
               class="category__input"
-              value="rock"
+              value="ロック"
             />
             ロック
           </li>
@@ -46,7 +46,7 @@
               v-model="posts.music.category"
               type="radio"
               class="category__input"
-              value="jazz"
+              value="ジャズ"
             />
             ジャズ
           </li>
@@ -55,7 +55,7 @@
               v-model="posts.music.category"
               type="radio"
               class="category__input"
-              value="classical"
+              value="クラシック"
             />
             クラシック
           </li>
@@ -64,7 +64,7 @@
               v-model="posts.music.category"
               type="radio"
               class="category__input"
-              value="pop"
+              value="ポップス"
             />
             ポップス
           </li>
@@ -73,7 +73,7 @@
               v-model="posts.music.category"
               type="radio"
               class="category__input"
-              value="j-pop"
+              value="J-POP"
             />
             J-POP
           </li>
@@ -82,7 +82,7 @@
               v-model="posts.music.category"
               type="radio"
               class="category__input"
-              value="anime"
+              value="アニソン"
             />
             アニソン
           </li>
@@ -107,7 +107,7 @@ export default {
           url: '',
           name: '',
           message: '',
-          category: 'rock',
+          category: 'ロック',
         },
       },
     }
