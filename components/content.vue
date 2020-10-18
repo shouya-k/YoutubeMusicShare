@@ -6,7 +6,7 @@
 
         <div class="user__name">shouya.kousuge</div>
         <div class="user__editing-icon">
-          <font-awesome-icon icon="ellipsis-v"></font-awesome-icon>
+          <i class="fas fa-ellipsis-v"></i>
         </div>
       </div>
       <div class="content__information">
@@ -28,16 +28,10 @@
           <a class="content__category-link" href="#">{{ music.category }}</a>
         </div>
         <a class="content__option-icon" href="">
-          <font-awesome-icon
-            icon="heart"
-            class="content__option-icon--heart"
-          ></font-awesome-icon>
+          <i class="far fa-heart content__option-icon--heart"></i>
         </a>
         <a class="content__option-icon" href="">
-          <font-awesome-icon
-            icon="share-alt"
-            class="content__option-icon--share"
-          ></font-awesome-icon>
+          <i class="fas fa-share-alt content__option-icon--share"></i>
         </a>
       </div>
     </div>

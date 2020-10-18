@@ -1,22 +1,16 @@
 <template>
   <div class="signin">
     <div class="signin__inner">
-      <font-awesome-icon
-        icon="music"
-        class="signin__icon fa-7x"
-      ></font-awesome-icon>
+      <i class="fas fa-music fa-7x signin__icon"></i>
       <h1 class="signin__title">YoutubeMusicShare 会員登録</h1>
 
       <form class="form">
         <div class="form__item">
-          <font-awesome-icon class="form__icon" icon="user"></font-awesome-icon>
+          <i class="fas fa-user form__icon"></i>
           <input class="form__input" type="text" placeholder="ユーザー名" />
         </div>
         <div class="form__item">
-          <font-awesome-icon
-            class="form__icon"
-            icon="envelope"
-          ></font-awesome-icon>
+          <i class="fas fa-envelope form__icon"></i>
           <input
             class="form__input"
             type="email"
@@ -24,11 +18,11 @@
           />
         </div>
         <div class="form__item">
-          <font-awesome-icon class="form__icon" icon="lock"></font-awesome-icon>
+          <i class="fas fa-lock form__icon"></i>
           <input class="form__input" type="password" placeholder="パスワード" />
         </div>
         <div class="form__item">
-          <font-awesome-icon class="form__icon" icon="redo"></font-awesome-icon>
+          <i class="fas fa-redo form__icon"></i>
           <input
             class="form__input"
             type="password"

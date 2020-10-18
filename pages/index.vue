@@ -10,7 +10,7 @@
       </p>
       <nuxt-link to="/signup" class="login__btn">
         会員登録はこちらから
-        <font-awesome-icon icon="arrow-right"></font-awesome-icon>
+        <i class="fas fa-arrow-right"></i>
       </nuxt-link>
     </div>
   </div>
