@@ -113,7 +113,8 @@ export default {
     border-radius: 4px;
 
     &:hover {
-      background-color: rgb(61, 61, 61);
+      background-color: #fff;
+      color: black;
     }
   }
 

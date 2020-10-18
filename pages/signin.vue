@@ -7,7 +7,7 @@
 
 <script>
 import Header from '../components/signin-up/header'
-import Form from '../components/signin-up/signup-form'
+import Form from '../components/signin-up/signin-form'
 export default {
   components: {
     Header,

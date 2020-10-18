@@ -6,6 +6,10 @@
 
       <form class="form">
         <div class="form__item">
+          <i class="fas fa-user form__icon"></i>
+          <input class="form__input" type="text" placeholder="ユーザー名" />
+        </div>
+        <div class="form__item">
           <i class="fas fa-envelope form__icon"></i>
           <input
             class="form__input"
@@ -17,16 +21,24 @@
           <i class="fas fa-lock form__icon"></i>
           <input class="form__input" type="password" placeholder="パスワード" />
         </div>
-        <button class="form__btn">ログイン</button>
+        <div class="form__item">
+          <i class="fas fa-redo form__icon"></i>
+          <input
+            class="form__input"
+            type="password"
+            placeholder="パスワードの確認"
+          />
+        </div>
+        <button class="form__btn">会員登録</button>
         <button class="form__btn form__btn--twitter">
           <i class="fab fa-twitter"></i>
-          Twitterでログインする
+          Twitterで会員登録する
         </button>
       </form>
 
       <div class="signin-up__footer">
-        会員登録がまだの方は
-        <nuxt-link to="/signup">こちらから会員登録</nuxt-link>
+        既に会員登録済みの方は
+        <nuxt-link to="/signin">こちらからログイン</nuxt-link>
       </div>
     </div>
   </div>

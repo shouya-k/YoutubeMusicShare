@@ -5,10 +5,10 @@
     <nav class="nav">
       <ul class="nav__menu">
         <li class="nav__item">
-          <nuxt-link to="/signin" class="nav__link">SignIn</nuxt-link>
+          <nuxt-link to="/signin" class="nav__link">サインイン</nuxt-link>
         </li>
         <li class="nav__item">
-          <nuxt-link to="/signup" class="nav__link">SignUp</nuxt-link>
+          <nuxt-link to="/signup" class="nav__link">サインアップ</nuxt-link>
         </li>
       </ul>
     </nav>
@@ -56,7 +56,7 @@ export default {}
     font-weight: bold;
     color: #fff;
     background-color: rgb(0, 0, 0);
-    margin: 0 20px;
+    margin: 0 15px;
     border: 2px solid #fff;
     border-radius: 4px;
   }
@@ -68,8 +68,7 @@ export default {}
     color: #fff;
     display: block;
     text-align: center;
-    padding: 3px 10px;
-    line-height: 42px;
+    line-height: 40px;
   }
   &__link:hover {
     color: rgb(0, 0, 0);
