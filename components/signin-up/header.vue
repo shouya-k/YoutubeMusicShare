@@ -24,8 +24,8 @@ export default {}
   display: flex;
   font-size: 2rem;
   background-color: #000000;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-bottom: 2px solid rgb(0, 123, 255);
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 5px 5px 0px;
   position: fixed;
   top: 0px;
   left: 0px;
