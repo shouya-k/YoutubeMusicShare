@@ -148,7 +148,7 @@ export default {
 
 .post {
   width: 50%;
-  margin: 20px 0;
+  margin: 10px 0;
   position: absolute;
   top: 12%;
   left: 25%;

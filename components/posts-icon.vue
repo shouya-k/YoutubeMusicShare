@@ -1,9 +1,6 @@
 <template>
   <nuxt-link to="/posts" class="footer__icon">
-    <font-awesome-icon
-      icon="plus-circle"
-      class="footer__plus-icon"
-    ></font-awesome-icon>
+    <i class="fas fa-plus-circle footer__plus-icon"></i>
   </nuxt-link>
 </template>
 
