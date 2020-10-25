@@ -18,9 +18,9 @@
           <input class="form__input" type="password" placeholder="パスワード" />
         </div>
         <button class="form__btn">ログイン</button>
-        <button class="form__btn form__btn--twitter">
-          <i class="fab fa-twitter"></i>
-          Twitterでログインする
+        <button class="form__btn form__btn--google">
+          <i class="fab fa-google"></i>
+          Googleでログインする
         </button>
       </form>
 

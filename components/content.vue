@@ -1,6 +1,6 @@
 <template>
   <main class="main">
-    <div v-for="music in musics" :key="music.id" class="content">
+    <!-- <div v-for="music in musics" :key="music.id" class="content">
       <div class="content__user user">
         <img class="user__img" alt="" />
 
@@ -34,33 +34,27 @@
           <i class="fas fa-share-alt content__option-icon--share"></i>
         </a>
       </div>
-    </div>
+    </div> -->
   </main>
 </template>
 
 <script>
-import { MUSIC_LIST } from '../apollo/queries/queries'
 export default {
-  name: 'MusicList',
-  apollo: {
-    musics: MUSIC_LIST,
-  },
-  methods: {
-    getURL(url) {
-      const musicID = this.getID(url)
-      return `//www.youtube.com/embed/${musicID}`
-    },
-    getID(url) {
-      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|v=)([^#]*).*/
-      const match = url.match(regExp)
-
-      if (match && match[2].length === 11) {
-        return match[2]
-      } else {
-        return 'error'
-      }
-    },
-  },
+  // methods: {
+  //   getURL(url) {
+  //     const musicID = this.getID(url)
+  //     return `//www.youtube.com/embed/${musicID}`
+  //   },
+  //   getID(url) {
+  //     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|v=)([^#]*).*/
+  //     const match = url.match(regExp)
+  //     if (match && match[2].length === 11) {
+  //       return match[2]
+  //     } else {
+  //       return 'error'
+  //     }
+  //   },
+  // },
 }
 </script>
 

@@ -1,3 +1,5 @@
+@import './variables';
+
 .signin-up {
   width: 100%;
   height: 100%;
@@ -9,10 +11,19 @@
     width: 25%;
     margin: 100px auto;
     text-align: center;
+
+    @include mq-sm {
+      width: 90%;
+      margin: 20px auto;
+    }
   }
 
   &__icon {
     color: black;
+
+    @include mq-sm {
+      font-size: 5rem;
+    }
   }
 
   &__title {
@@ -30,6 +41,10 @@
     border: 1px solid rgba(34, 36, 38, 0.15);
     border-radius: 4px;
     box-shadow: inset 0 0 0 1px rgba(34, 36, 38, 0.22), 0 0 0 0 transparent;
+
+    @include mq-sm {
+      display: none;
+    }
   }
 }
 
@@ -77,6 +92,10 @@
 
     &--twitter {
       background-color: #69abe8;
+    }
+
+    &--google {
+      background-color:  #cc4f40;
     }
   }
   &__btn:hover {

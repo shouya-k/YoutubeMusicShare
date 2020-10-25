@@ -1,6 +1,6 @@
 <template>
   <main class="main-post">
-    <form class="post" @submit.prevent="addMusic">
+    <form class="post">
       <h1 class="post__title">オススメの投稿</h1>
       <div class="post__input-text">
         <input
@@ -98,7 +98,6 @@
 </template>
 
 <script>
-import { ADD_MUSIC } from '../apollo/queries/queries'
 export default {
   data() {
     return {
@@ -111,29 +110,6 @@ export default {
         },
       },
     }
-  },
-  methods: {
-    addMusic() {
-      const { name, message, category, url } = this.posts.music
-      this.$apollo
-        .mutate({
-          mutation: ADD_MUSIC,
-          variables: {
-            name,
-            message,
-            category,
-            url,
-          },
-        })
-        .then((data) => {
-          console.log(data)
-          // this.$router.push('/timeline') だとページがリロードされず投稿が反映されない。
-          location.replace('/timeline')
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    },
   },
 }
 </script>

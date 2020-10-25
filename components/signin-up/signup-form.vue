@@ -30,9 +30,9 @@
           />
         </div>
         <button class="form__btn">会員登録</button>
-        <button class="form__btn form__btn--twitter">
-          <i class="fab fa-twitter"></i>
-          Twitterで会員登録する
+        <button class="form__btn form__btn--google" @click="googleLogin()">
+          <i class="fab fa-google"></i>
+          Googleで会員登録する
         </button>
       </form>
 
@@ -45,7 +45,24 @@
 </template>
 
 <script>
-export default {}
+import firebase from '@/plugins/firebase'
+export default {
+  mounted() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.$router.push('/timeline')
+      } else {
+        console.log('未認証')
+      }
+    })
+  },
+  methods: {
+    googleLogin() {
+      const provider = new firebase.auth.GoogleAuthProvider()
+      firebase.auth().signInWithRedirect(provider)
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped>
