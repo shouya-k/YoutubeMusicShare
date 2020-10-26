@@ -1,98 +1,85 @@
 <template>
-  <main class="main-post">
-    <form class="post">
-      <h1 class="post__title">オススメの投稿</h1>
-      <div class="post__input-text">
+  <main class="posts">
+    <form class="posts__form">
+      <h1 class="posts__title">オススメの投稿</h1>
+      <div class="posts__input">
         <input
-          id="music-url"
-          v-model="posts.music.url"
-          class="post__input"
+          v-model="posts.url"
+          class="posts__input--inner"
           type="url"
           placeholder="曲のURL"
         />
       </div>
-      <div class="post__input-text">
+      <div class="posts__input">
         <input
-          id="music-title"
-          v-model="posts.music.name"
-          class="post__input"
+          v-model="posts.name"
+          class="posts__input--inner"
           type="text"
           placeholder="曲のタイトル"
         />
       </div>
-      <div class="post__input-text">
+      <div class="posts__input">
         <input
-          id="favorite-reason"
-          v-model="posts.music.message"
-          class="post__input"
+          v-model="posts.message"
+          class="posts__input--inner"
           type="text"
           placeholder="オススメの理由"
         />
       </div>
-      <div id="category" class="category">
+
+      <div class="category">
         <h2 class="category__title">カテゴリ</h2>
-        <ul class="category__menu">
-          <li class="category__item">
-            <input
-              v-model="posts.music.category"
-              type="radio"
-              class="category__input"
-              value="ロック"
-            />
-            ロック
-          </li>
-          <li class="category__item">
-            <input
-              v-model="posts.music.category"
-              type="radio"
-              class="category__input"
-              value="ジャズ"
-            />
-            ジャズ
-          </li>
-          <li class="category__item">
-            <input
-              v-model="posts.music.category"
-              type="radio"
-              class="category__input"
-              value="クラシック"
-            />
-            クラシック
-          </li>
-          <li class="category__item">
-            <input
-              v-model="posts.music.category"
-              type="radio"
-              class="category__input"
-              value="ポップス"
-            />
-            ポップス
-          </li>
-          <li class="category__item">
-            <input
-              v-model="posts.music.category"
-              type="radio"
-              class="category__input"
-              value="J-POP"
-            />
-            J-POP
-          </li>
-          <li class="category__item">
-            <input
-              v-model="posts.music.category"
-              type="radio"
-              class="category__input"
-              value="アニソン"
-            />
-            アニソン
-          </li>
-        </ul>
+        <label class="category__label">
+          <input
+            v-model="posts.category"
+            class="category__input"
+            type="radio"
+            value="ロック"
+          />ロック
+        </label>
+        <label class="category__label">
+          <input
+            v-model="posts.category"
+            class="category__input"
+            type="radio"
+            value="ジャズ"
+          />ジャズ
+        </label>
+        <label class="category__label">
+          <input
+            v-model="posts.category"
+            class="category__input"
+            type="radio"
+            value="クラシック"
+          />クラシック
+        </label>
+        <label class="category__label">
+          <input
+            v-model="posts.category"
+            class="category__input"
+            type="radio"
+            value="POP"
+          />POP
+        </label>
+        <label class="category__label">
+          <input
+            v-model="posts.category"
+            class="category__input"
+            type="radio"
+            value="J-POP"
+          />J-POP
+        </label>
+        <label class="category__label">
+          <input
+            v-model="posts.category"
+            class="category__input"
+            type="radio"
+            value="アニソン"
+          />アニソン
+        </label>
       </div>
-      <div class="post__submit">
-        <button class="post__submit-button" type="submit" value="send">
-          投稿する
-        </button>
-      </div>
+
+      <button class="posts__submit">オススメを投稿する。</button>
     </form>
   </main>
 </template>
@@ -102,12 +89,10 @@ export default {
   data() {
     return {
       posts: {
-        music: {
-          url: '',
-          name: '',
-          message: '',
-          category: 'ロック',
-        },
+        url: '',
+        name: '',
+        message: '',
+        category: 'ロック',
       },
     }
   },
@@ -115,134 +100,84 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/_variables.scss';
-
-.main-post {
-  height: 950px;
+.posts {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
   background-color: rgb(216, 216, 216);
-}
-
-.post {
-  width: 50%;
-  margin: 10px 0;
   position: absolute;
-  top: 12%;
-  left: 25%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
-  border: 2px solid #1e1bd3;
-  border-radius: 6px;
-  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
+  top: 0;
 
-  &__title {
-    font-weight: bold;
-    font-size: 3.6rem;
-    text-align: center;
-    padding: 20px 0;
+  &__form {
+    width: 40%;
+    margin: 180px auto;
+    background-color: #fff;
+    border: 1px solid #1e1bd3;
+    border-radius: 6px;
   }
 
-  &__input-text {
-    position: relative;
-    width: 70%;
-    margin: 40px auto;
-
-    &::after {
-      display: block;
-      width: 100%;
-      height: 4px;
-      margin-top: -1px;
-      content: '';
-      border-width: 0 1px 1px 1px;
-      border-style: solid;
-      border-color: #1e1bd3;
-    }
+  &__title {
+    text-align: center;
+    font-size: 2.8rem;
+    font-weight: bold;
+    padding: 20px 0;
+    margin-bottom: 20px;
   }
 
   &__input {
-    font: 1.5rem/2.4rem sans-serif;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 3px;
-    padding-left: 10px;
-    letter-spacing: 1px;
-    border: 0;
+    width: 70%;
+    margin: 0 auto 20px;
 
-    &:focus {
-      outline: none;
-    }
-
-    &:focus::after {
-      outline: none;
+    &--inner {
+      width: 100%;
+      padding: 12px;
+      font-size: 1.6rem;
     }
   }
 
   &__submit {
-    flex-direction: row;
-    text-align: center;
-    padding: 20px 0;
+    width: 70%;
+    display: block;
+    margin: 0 auto 25px;
+    padding: 10px 0;
+    font-size: 1.8rem;
+    color: #000000;
+    background-color: #fff;
+    border: 1px solid #000000;
+    border-radius: 6px;
 
-    &-button {
-      width: 300px;
-      height: 50px;
-      color: #000000;
-      background-color: #fff;
-      border: 1px solid #1e1bd3;
-      border-radius: 6px;
-    }
-
-    &-button:hover {
-      background-color: rgb(240, 240, 240);
-    }
-  }
-
-  //post
-  @include mq-sm {
-    width: 100%;
-    position: absolute;
-    top: 13%;
-    left: 0;
-    margin: 0;
-
-    &__submit-button {
-      border-radius: 6px;
+    &:hover {
+      color: #fff;
+      background-color: #000000;
     }
   }
 }
 
 .category {
   width: 70%;
-  margin: 20px auto;
-  text-align: left;
+  margin: 0 auto 25px;
+  border: 1px solid black;
+  border-radius: 6px;
 
   &__title {
-    font-size: 3rem;
+    font-size: 2.2rem;
     font-weight: bold;
     text-align: center;
-    padding-bottom: 20px;
+    padding: 10px;
   }
 
-  &__menu {
-    padding: 10px 20px;
-    list-style: none;
-    border: 1px solid #1e1bd3;
-    border-radius: 4px;
-  }
+  &__label {
+    font-size: 1.6rem;
+    padding: 5px 20px;
+    display: flex;
 
-  &__item {
-    font-size: 2rem;
-    padding: 0;
-    margin-bottom: 1rem;
+    &:last-child {
+      margin-bottom: 5px;
+    }
   }
 
   &__input {
-    width: 18px;
-    height: 18px;
-    position: relative;
-    margin: 0 10px 0 0;
-    cursor: pointer;
+    margin-right: 10px;
   }
 }
 </style>

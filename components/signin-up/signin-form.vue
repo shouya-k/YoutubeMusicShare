@@ -18,7 +18,7 @@
           <input class="form__input" type="password" placeholder="パスワード" />
         </div>
         <button class="form__btn">ログイン</button>
-        <button class="form__btn form__btn--google">
+        <button class="form__btn form__btn--google" @click="googleLogin()">
           <i class="fab fa-google"></i>
           Googleでログインする
         </button>
@@ -33,7 +33,24 @@
 </template>
 
 <script>
-export default {}
+import firebase from '@/plugins/firebase'
+export default {
+  mounted() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.$router.push('/timeline')
+      } else {
+        console.log('未認証')
+      }
+    })
+  },
+  methods: {
+    googleLogin() {
+      const provider = new firebase.auth.GoogleAuthProvider()
+      firebase.auth().signInWithRedirect(provider)
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped>

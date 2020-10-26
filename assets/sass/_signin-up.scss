@@ -4,12 +4,13 @@
   width: 100%;
   height: 100%;
   position: absolute;
-  top: 12%;
+  top: 0;
+  overflow: hidden;
   background-color: rgb(216, 216, 216);
 
   &__inner {
     width: 25%;
-    margin: 100px auto;
+    margin: 200px auto;
     text-align: center;
 
     @include mq-sm {
