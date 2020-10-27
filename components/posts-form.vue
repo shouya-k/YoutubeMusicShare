@@ -1,6 +1,6 @@
 <template>
   <main class="posts">
-    <form class="posts__form">
+    <form class="posts__form" @submit.prevent="submit()">
       <h1 class="posts__title">オススメの投稿</h1>
       <div class="posts__input">
         <input
@@ -79,13 +79,15 @@
         </label>
       </div>
 
-      <button class="posts__submit">オススメを投稿する。</button>
+      <input type="submit" class="posts__submit" value="オススメの投稿" />
     </form>
   </main>
 </template>
 
 <script>
+import firebase from '@/plugins/firebase'
 export default {
+  props: ['currentUID'],
   data() {
     return {
       posts: {
@@ -95,6 +97,37 @@ export default {
         category: 'ロック',
       },
     }
+  },
+  methods: {
+    submit() {
+      const db = firebase.firestore()
+      const collection = db.collection('posts')
+      const usersDocRef = db.doc(`users/${this.currentUID}`)
+
+      collection.add({
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        url: this.getURL(this.posts.url),
+        name: this.posts.name,
+        message: this.posts.message,
+        category: this.posts.category,
+        userID: usersDocRef,
+      })
+
+      location.replace('/timeline')
+    },
+    getURL(url) {
+      const musicID = this.getID(url)
+      return `//www.youtube.com/embed/${musicID}`
+    },
+    getID(url) {
+      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|v=)([^#]*).*/
+      const match = url.match(regExp)
+      if (match && match[2].length === 11) {
+        return match[2]
+      } else {
+        return 'error'
+      }
+    },
   },
 }
 </script>
@@ -110,10 +143,11 @@ export default {
 
   &__form {
     width: 40%;
-    margin: 180px auto;
+    margin: 160px auto;
     background-color: #fff;
-    border: 1px solid #1e1bd3;
-    border-radius: 6px;
+    border: 2px solid rgba(12, 103, 207, 0.5);
+    border-radius: 4px;
+    box-shadow: 0 1px 2px 0 rgba(12, 103, 207, 0.15);
   }
 
   &__title {
@@ -143,7 +177,7 @@ export default {
     font-size: 1.8rem;
     color: #000000;
     background-color: #fff;
-    border: 1px solid #000000;
+    border: 1px solid rgba(34, 36, 38, 1);
     border-radius: 6px;
 
     &:hover {
@@ -156,7 +190,7 @@ export default {
 .category {
   width: 70%;
   margin: 0 auto 25px;
-  border: 1px solid black;
+  border: 1px solid rgba(34, 36, 38, 1);
   border-radius: 6px;
 
   &__title {

@@ -25,12 +25,9 @@ export default {
   created() {
     const user = firebase.auth().currentUser
     if (user) {
-      // ログイン済み
       this.currentUID = user.uid
-      console.log(user)
       this.userAuth(user)
     } else {
-      // 未ログイン。ログイン画面へ遷移する
       this.$router.push('/signup')
     }
   },

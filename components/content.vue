@@ -39,23 +39,7 @@
 </template>
 
 <script>
-export default {
-  // methods: {
-  //   getURL(url) {
-  //     const musicID = this.getID(url)
-  //     return `//www.youtube.com/embed/${musicID}`
-  //   },
-  //   getID(url) {
-  //     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|v=)([^#]*).*/
-  //     const match = url.match(regExp)
-  //     if (match && match[2].length === 11) {
-  //       return match[2]
-  //     } else {
-  //       return 'error'
-  //     }
-  //   },
-  // },
-}
+export default {}
 </script>
 
 <style lang="scss" scoped>
