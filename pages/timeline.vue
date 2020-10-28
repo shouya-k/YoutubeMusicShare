@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <Content />
+    <Content :currentUID="currentUID" />
     <PostsIcon />
   </div>
 </template>
@@ -28,7 +28,7 @@ export default {
       this.currentUID = user.uid
       this.userAuth(user)
     } else {
-      this.$router.push('/signup')
+      console.log('未認証です。')
     }
   },
   methods: {
@@ -44,8 +44,6 @@ export default {
           if (doc.exists) {
             console.log('Get document data!!')
           } else {
-            // Firestoreにデータが無かったら追加する
-            console.log('No such document!')
             user.providerData.forEach(function (profile) {
               collection.doc(user.uid).set(
                 {
