@@ -104,16 +104,18 @@ export default {
       const collection = db.collection('posts')
       const usersDocRef = db.doc(`users/${this.currentUID}`)
 
-      collection.add({
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        url: this.getURL(this.posts.url),
-        name: this.posts.name,
-        message: this.posts.message,
-        category: this.posts.category,
-        userID: usersDocRef,
-      })
-
-      location.replace('/timeline')
+      collection
+        .add({
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          url: this.getURL(this.posts.url),
+          name: this.posts.name,
+          message: this.posts.message,
+          category: this.posts.category,
+          userID: usersDocRef,
+        })
+        .then(() => {
+          location.replace('/timeline')
+        })
     },
     getURL(url) {
       const musicID = this.getID(url)

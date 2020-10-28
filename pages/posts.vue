@@ -27,7 +27,7 @@ export default {
       } else {
         console.log('未認証')
         this.currentUID = null
-        this.$router.push('/signin')
+        this.$router.push('/timeline')
       }
     })
   },
