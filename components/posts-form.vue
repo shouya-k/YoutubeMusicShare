@@ -135,6 +135,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/sass/_variables';
 .posts {
   overflow: hidden;
   height: 100%;
@@ -143,6 +144,10 @@ export default {
   position: absolute;
   top: 0;
 
+  @include mq-sm {
+    background-color: #fff;
+  }
+
   &__form {
     width: 40%;
     margin: 160px auto;
@@ -150,6 +155,13 @@ export default {
     border: 2px solid rgba(12, 103, 207, 0.5);
     border-radius: 4px;
     box-shadow: 0 1px 2px 0 rgba(12, 103, 207, 0.15);
+
+    @include mq-sm {
+      width: 100%;
+      margin: 120px auto;
+      border: 0;
+      box-shadow: none;
+    }
   }
 
   &__title {
@@ -163,6 +175,10 @@ export default {
   &__input {
     width: 70%;
     margin: 0 auto 20px;
+
+    @include mq-sm {
+      width: 80%;
+    }
 
     &--inner {
       width: 100%;
@@ -182,6 +198,10 @@ export default {
     border: 1px solid rgba(34, 36, 38, 1);
     border-radius: 6px;
 
+    @include mq-sm {
+      width: 80%;
+    }
+
     &:hover {
       color: #fff;
       background-color: #000000;
@@ -194,6 +214,10 @@ export default {
   margin: 0 auto 25px;
   border: 1px solid rgba(34, 36, 38, 1);
   border-radius: 6px;
+
+  @include mq-sm {
+    width: 80%;
+  }
 
   &__title {
     font-size: 2.2rem;

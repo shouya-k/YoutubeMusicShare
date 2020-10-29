@@ -8,6 +8,10 @@
   overflow: hidden;
   background-color: rgb(216, 216, 216);
 
+  @include mq-sm {
+    overflow: visible;
+  }
+
   &__inner {
     width: 25%;
     margin: 200px auto;
@@ -15,7 +19,7 @@
 
     @include mq-sm {
       width: 90%;
-      margin: 20px auto;
+      margin: 120px auto;
     }
   }
 

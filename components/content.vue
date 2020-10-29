@@ -2,7 +2,7 @@
   <main class="main">
     <div v-for="post in posts" :key="post.id" class="content">
       <div class="content__user user">
-        <img class="user__img" alt="" />
+        <img class="user__img" :src="post.userData.photoURL" />
 
         <div class="user__name">{{ post.userData.displayName }}</div>
         <div class="user__editing-icon" @click="togglePopup(post)">
@@ -50,7 +50,7 @@
           ></iframe>
         </div>
         <div class="content__title">
-          <a :href="post.url">{{ post.name }}</a>
+          <p>{{ post.name }}</p>
         </div>
         <p class="content__message">{{ post.message }}</p>
       </div>
@@ -58,11 +58,8 @@
         <div class="content__category" :class="[post.category]">
           <a class="content__category-link" href="#">{{ post.category }}</a>
         </div>
-        <a class="content__option-icon" href="">
-          <i class="far fa-heart content__option-icon--heart"></i>
-        </a>
-        <a class="content__option-icon" href="">
-          <i class="fas fa-share-alt content__option-icon--share"></i>
+        <a class="content__option-icon" :href="post.url">
+          <i class="fab fa-youtube content__option-icon--youtube"></i>
         </a>
       </div>
     </div>
@@ -108,7 +105,7 @@ export default {
     },
     showModal(post) {
       post.isHidden = false
-      if (post.userID.id === this.currentUID) {
+      if (post.userID === this.currentUID) {
         this.modalText = '本当にこの投稿を削除してもよろしいですか？'
         this.isDeleteHidden = false
       } else {
@@ -211,17 +208,14 @@ export default {
 
     &-icon {
       display: block;
-      padding: 0 10px;
       cursor: pointer;
+      padding: 0 3px;
+      border: 1px solid gray;
+      border-radius: 6px;
     }
 
-    &-icon--heart {
+    &-icon--youtube {
       color: #fd0001;
-      font-size: 3.2rem;
-    }
-
-    &-icon--share {
-      color: #69abe8;
       font-size: 3.2rem;
     }
   }
