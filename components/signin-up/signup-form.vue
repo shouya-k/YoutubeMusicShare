@@ -4,32 +4,51 @@
       <i class="fas fa-music fa-7x signin-up__icon"></i>
       <h1 class="signin-up__title">YoutubeMusicShare 会員登録</h1>
 
-      <form class="form">
-        <div class="form__item">
+      <form class="form" @submit.prevent="createUser()">
+        <div class="form__item" :class="{ form__input_empty: isName }">
           <i class="fas fa-user form__icon"></i>
-          <input class="form__input" type="text" placeholder="ユーザー名" />
+          <input
+            v-model="name"
+            :class="{ form__input_empty: isName }"
+            class="form__input"
+            type="text"
+            placeholder="ユーザー名"
+          />
         </div>
-        <div class="form__item">
+        <div class="form__item" :class="{ form__input_empty: isEmail }">
           <i class="fas fa-envelope form__icon"></i>
           <input
+            v-model="email"
+            :class="{ form__input_empty: isEmail }"
             class="form__input"
             type="email"
             placeholder="Eメールアドレス"
           />
         </div>
-        <div class="form__item">
+        <div class="form__item" :class="{ form__input_empty: isPassword }">
           <i class="fas fa-lock form__icon"></i>
-          <input class="form__input" type="password" placeholder="パスワード" />
+          <input
+            v-model="password"
+            :class="{ form__input_empty: isPassword }"
+            class="form__input"
+            type="password"
+            placeholder="パスワード"
+          />
         </div>
-        <div class="form__item">
+        <div
+          class="form__item"
+          :class="{ form__input_empty: isPasswordConfirm }"
+        >
           <i class="fas fa-redo form__icon"></i>
           <input
+            v-model="passwordConfirm"
+            :class="{ form__input_empty: isPasswordConfirm }"
             class="form__input"
             type="password"
             placeholder="パスワードの確認"
           />
         </div>
-        <button class="form__btn">会員登録</button>
+        <input type="submit" class="form__btn" value="会員登録" />
         <button class="form__btn form__btn--google" @click="googleLogin()">
           <i class="fab fa-google"></i>
           Googleで会員登録する
@@ -47,6 +66,19 @@
 <script>
 import firebase from '@/plugins/firebase'
 export default {
+  data() {
+    return {
+      name: '',
+      email: '',
+      password: '',
+      passwordConfirm: '',
+      photoURL: '../../assets/img/mobile-605422_1920.jpg',
+      isName: false,
+      isEmail: false,
+      isPassword: false,
+      isPasswordConfirm: false,
+    }
+  },
   mounted() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -57,6 +89,45 @@ export default {
     })
   },
   methods: {
+    createUser() {
+      this.name === '' ? (this.isName = true) : (this.isName = false)
+      this.email === '' ? (this.isEmail = true) : (this.isEmail = false)
+      this.password === ''
+        ? (this.isPassword = true)
+        : (this.isPassword = false)
+      this.passwordConfirm === ''
+        ? (this.isPasswordConfirm = true)
+        : (this.isPasswordConfirm = false)
+
+      if (
+        this.name === '' ||
+        this.email === '' ||
+        this.password === '' ||
+        this.passwordConfirm === ''
+      ) {
+        alert('全ての項目を入力してください。')
+      } else if (this.password !== this.passwordConfirm) {
+        alert('パスワードが間違っています。')
+      } else {
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(this.email, this.password)
+          .then((result) => {
+            const db = firebase.firestore()
+            const collection = db.collection('users')
+
+            collection.doc(result.user.uid).set(
+              {
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                email: this.email,
+                displayName: this.name,
+                photoURL: this.photoURL,
+              },
+              { merge: true }
+            )
+          })
+      }
+    },
     googleLogin() {
       const provider = new firebase.auth.GoogleAuthProvider()
       firebase.auth().signInWithRedirect(provider)
