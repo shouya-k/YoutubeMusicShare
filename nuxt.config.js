@@ -38,16 +38,8 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/apollo',
+    '@nuxtjs/dotenv',
   ],
-
-  apollo: {
-    clientConfigs: {
-      default: {
-        httpEndpoint: 'http://localhost:4000/graphql',
-      },
-    },
-  },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},

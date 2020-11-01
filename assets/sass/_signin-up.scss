@@ -1,18 +1,37 @@
+@import './variables';
+
 .signin-up {
+  overflow: hidden;
   width: 100%;
   height: 100%;
   position: absolute;
-  top: 12%;
+  top: 0;
   background-color: rgb(216, 216, 216);
+
+  @include mq-sm {
+    overflow: visible;
+    min-height: 600px;
+    background-color: #fff;
+  }
 
   &__inner {
     width: 25%;
-    margin: 100px auto;
+    margin: 180px auto;
     text-align: center;
+
+    @include mq-sm {
+      width: 90%;
+      height: 600px;
+      margin: 120px auto;
+    }
   }
 
   &__icon {
     color: black;
+
+    @include mq-sm {
+      font-size: 5rem;
+    }
   }
 
   &__title {
@@ -24,18 +43,22 @@
 
   &__footer {
     font-size: 1.4rem;
-    margin-top: 20px;
     padding: 15px;
     background-color: #eeeeee;
     border: 1px solid rgba(34, 36, 38, 0.15);
     border-radius: 4px;
     box-shadow: inset 0 0 0 1px rgba(34, 36, 38, 0.22), 0 0 0 0 transparent;
+
+    @include mq-sm {
+      display: none;
+    }
   }
 }
 
 .form {
-  background: #ffffff;
+  background-color: #fff;
   padding: 20px 20px 10px;
+  margin-bottom: 15px;
   border: 1px solid rgba(34, 36, 38, 0.15);
   border-radius: 4px;
   box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15);
@@ -61,6 +84,10 @@
     padding: 5px;
     box-sizing: border-box;
     font-size: 14px;
+
+    &_empty {
+      background-color: #FDD9D6;
+    }
   }
 
   &__btn {
@@ -78,8 +105,37 @@
     &--twitter {
       background-color: #69abe8;
     }
+
+    &--google {
+      background-color:  #cc4f40;
+    }
   }
   &__btn:hover {
     opacity: 1;
+  }
+}
+
+.error {
+  display: none;
+  color: #9F3A39;
+  background-color: #FFF6F6;
+  padding: 15px 0 ;
+  margin-bottom: 15px;
+  border: 1px solid #E0B5B4;
+  border-radius: 4px;
+
+  &__title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0 10px 15px;
+  }
+
+  &__message {
+    font-size: 1.4rem;
+    margin: 0 10px;
+  }
+
+  &__visible {
+    display: block;
   }
 }

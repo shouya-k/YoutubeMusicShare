@@ -21,6 +21,7 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/sass/_variables';
 .login {
   &__warpper {
     width: 70%;
@@ -29,11 +30,17 @@ export default {}
     left: 50%;
     transform: translate(-50%, -50%);
     color: #fff;
+
+    @include mq-sm {
+      width: 90%;
+      top: 45%;
+    }
   }
 
   &--bg {
     background-image: url(../assets/img/mobile-605422_1920.jpg);
     min-height: 100vh;
+    background-size: cover;
 
     &::before {
       content: '';
@@ -52,12 +59,22 @@ export default {}
     padding: 30px 30px 70px;
     text-align: center;
     letter-spacing: 2px;
+
+    @include mq-sm {
+      font-size: 2.4rem;
+      padding: 30px 0;
+    }
   }
 
   &__text {
     font-size: 3rem;
     padding: 15px 20px;
     letter-spacing: 2px;
+
+    @include mq-sm {
+      font-size: 1.6rem;
+      padding: 10px 0;
+    }
   }
 
   &__btn {
@@ -70,6 +87,12 @@ export default {}
     color: #fff;
     border: 3px solid #fff;
     border-radius: 100px;
+
+    @include mq-sm {
+      width: 90%;
+      font-size: 1.4rem;
+      padding: 20px 10px;
+    }
   }
 
   &__btn:hover {

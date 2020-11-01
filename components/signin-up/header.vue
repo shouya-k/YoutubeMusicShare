@@ -20,6 +20,8 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/sass/_variables';
+
 .head {
   display: flex;
   font-size: 2rem;
@@ -41,6 +43,10 @@ export default {}
     color: #fff;
     cursor: pointer;
     text-shadow: 0px 0px 2px #fff, 4px 4px 2px rgba(0, 0, 0, 0.3);
+
+    @include mq-sm {
+      font-size: 1.6rem;
+    }
   }
 }
 
@@ -59,6 +65,11 @@ export default {}
     margin: 0 15px;
     border: 2px solid #fff;
     border-radius: 4px;
+
+    @include mq-sm {
+      font-size: 1.2rem;
+      margin: 0 5px;
+    }
   }
   &__item:hover {
     background-color: #fff;

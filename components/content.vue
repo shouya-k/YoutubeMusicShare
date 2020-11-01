@@ -1,37 +1,65 @@
 <template>
   <main class="main">
-    <div v-for="music in musics" :key="music.id" class="content">
+    <div v-for="post in posts" :key="post.id" class="content">
       <div class="content__user user">
-        <img class="user__img" alt="" />
+        <img class="user__img" :src="post.userData.photoURL" />
 
-        <div class="user__name">shouya.kousuge</div>
-        <div class="user__editing-icon">
+        <div class="user__name">{{ post.userData.displayName }}</div>
+        <div class="user__editing-icon" @click="togglePopup(post)">
           <i class="fas fa-ellipsis-v"></i>
+          <div :class="{ popup: post.popup }">
+            <div class="popup__inner" @click="showModal(post)">
+              <p>投稿を削除</p>
+            </div>
+            <div class="popup__bg"></div>
+          </div>
         </div>
+        <div class="modal" :class="{ modal__hidden: post.isHidden }">
+          <p class="modal__title">投稿を削除</p>
+          <p class="modal__text">{{ modalText }}</p>
+
+          <div class="modal__buttons">
+            <button
+              class="modal__button modal__cancel"
+              @click="hiddenModal(post)"
+            >
+              キャンセル
+            </button>
+            <button
+              class="modal__button modal__delete"
+              :class="{ 'modal__delete--hidden': isDeleteHidden }"
+              @click="postDelete(post)"
+            >
+              削除する
+            </button>
+          </div>
+        </div>
+        <div
+          class="modal__mask"
+          :class="{ modal__hidden: post.isHidden }"
+          @click="hiddenModal(post)"
+        ></div>
       </div>
       <div class="content__information">
         <div class="content__movie">
           <iframe
-            :src="getURL(music.url)"
+            :src="post.url"
             class="content__iframe"
             frameborder="0"
             allowfullscreen
           ></iframe>
         </div>
         <div class="content__title">
-          <a>{{ music.name }}</a>
+          <p>{{ post.name }}</p>
         </div>
-        <p class="content__message">{{ music.message }}</p>
+        <p class="content__message">{{ post.message }}</p>
       </div>
       <div class="content__option">
-        <div class="content__category" :class="[music.category]">
-          <a class="content__category-link" href="#">{{ music.category }}</a>
+        <div class="content__category" :class="[post.category]">
+          <a class="content__category-link" href="#">{{ post.category }}</a>
         </div>
-        <a class="content__option-icon" href="">
-          <i class="far fa-heart content__option-icon--heart"></i>
-        </a>
-        <a class="content__option-icon" href="">
-          <i class="fas fa-share-alt content__option-icon--share"></i>
+        <a class="content__option-icon" :href="post.url">
+          <i class="fab fa-youtube content__option-icon--youtube"></i>
         </a>
       </div>
     </div>
@@ -39,26 +67,68 @@
 </template>
 
 <script>
-import { MUSIC_LIST } from '../apollo/queries/queries'
+import firebase from '@/plugins/firebase'
 export default {
-  name: 'MusicList',
-  apollo: {
-    musics: MUSIC_LIST,
+  props: ['currentUID'],
+  data() {
+    return {
+      posts: [],
+      modalText: '',
+      isDeleteHidden: true,
+    }
+  },
+  created() {
+    this.db = firebase.firestore()
+  },
+  mounted() {
+    const collection = this.db.collection('posts')
+
+    collection.get().then((querySnapshot) => {
+      this.posts = []
+      querySnapshot.forEach((doc) => {
+        const postsData = doc.data()
+        postsData.id = doc.id
+        if (postsData.userID) {
+          postsData.userID.get().then((res) => {
+            postsData.popup = true
+            postsData.isHidden = true
+            postsData.userData = res.data()
+            this.posts.push(postsData)
+          })
+        }
+      })
+    })
   },
   methods: {
-    getURL(url) {
-      const musicID = this.getID(url)
-      return `//www.youtube.com/embed/${musicID}`
+    togglePopup(posts) {
+      posts.popup = !posts.popup
     },
-    getID(url) {
-      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|v=)([^#]*).*/
-      const match = url.match(regExp)
-
-      if (match && match[2].length === 11) {
-        return match[2]
+    showModal(post) {
+      post.isHidden = false
+      if (post.userID.id === this.currentUID) {
+        this.modalText = '本当にこの投稿を削除してもよろしいですか？'
+        this.isDeleteHidden = false
       } else {
-        return 'error'
+        this.modalText = '投稿者しか投稿を削除する事は出来ません。'
+        this.isDeleteHidden = true
       }
+    },
+    hiddenModal(posts) {
+      posts.isHidden = true
+    },
+    postDelete(post) {
+      const collection = this.db.collection('posts')
+
+      collection
+        .doc(post.id)
+        .delete()
+        .then(function () {
+          location.reload()
+          console.log('Document successfully deleted!')
+        })
+        .catch(function (error) {
+          console.error('Error removing document: ', error)
+        })
     },
   },
 }
@@ -84,7 +154,7 @@ export default {
 }
 
 .content {
-  width: 40%;
+  width: 38%;
   max-width: 600px;
   margin: 30px auto;
   padding: 10px;
@@ -100,7 +170,6 @@ export default {
   &__movie {
     position: relative;
     padding-bottom: 56.25%;
-    /*アスペクト比 16:9の場合の縦幅*/
     height: 0;
     overflow: hidden;
   }
@@ -139,17 +208,14 @@ export default {
 
     &-icon {
       display: block;
-      padding: 0 10px;
       cursor: pointer;
+      padding: 0 3px;
+      border: 1px solid gray;
+      border-radius: 6px;
     }
 
-    &-icon--heart {
+    &-icon--youtube {
       color: #fd0001;
-      font-size: 3.2rem;
-    }
-
-    &-icon--share {
-      color: #69abe8;
       font-size: 3.2rem;
     }
   }
@@ -223,12 +289,12 @@ export default {
   visibility: hidden;
 
   &__inner {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
     padding: 15px;
     width: 150px;
     position: absolute;
     top: -10px;
-    left: 0;
+    left: -35px;
     z-index: 2;
     border: 1px solid black;
     border-radius: 4px;

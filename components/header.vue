@@ -39,14 +39,14 @@
             >ランキング</nuxt-link
           >
         </li>
-        <li class="nav__item nav__item--logout">
-          <nuxt-link to="/" class="nav__link" active-class="nav__link--active"
-            >ログアウト</nuxt-link
-          >
+        <li class="nav__item nav__item--logout" @click.prevent="logOut()">
+          <a class="nav__link">ログアウト</a>
         </li>
       </ul>
     </nav>
-    <button type="button" class="head__logout-btn">ログアウト</button>
+    <button type="button" class="head__logout-btn" @click.prevent="logOut()">
+      ログアウト
+    </button>
     <div class="nav__icon" @click="navShow">
       <i class="fas fa-bars fa-2x" style="color: #fff"></i>
     </div>
@@ -59,6 +59,7 @@
 </template>
 
 <script>
+import firebase from '@/plugins/firebase'
 export default {
   data() {
     return {
@@ -66,6 +67,14 @@ export default {
     }
   },
   methods: {
+    logOut() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.push('/signin')
+        })
+    },
     navShow() {
       this.isNavShow = true
     },
