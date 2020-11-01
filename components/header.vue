@@ -39,14 +39,12 @@
             >ランキング</nuxt-link
           >
         </li>
-        <li class="nav__item nav__item--logout" @click="logOut()">
-          <nuxt-link to="/" class="nav__link" active-class="nav__link--active"
-            >ログアウト</nuxt-link
-          >
+        <li class="nav__item nav__item--logout" @click.prevent="logOut()">
+          <a class="nav__link">ログアウト</a>
         </li>
       </ul>
     </nav>
-    <button type="button" class="head__logout-btn" @click="logOut()">
+    <button type="button" class="head__logout-btn" @click.prevent="logOut()">
       ログアウト
     </button>
     <div class="nav__icon" @click="navShow">
@@ -74,7 +72,7 @@ export default {
         .auth()
         .signOut()
         .then(() => {
-          this.$router.push('/')
+          this.$router.push('/signin')
         })
     },
     navShow() {

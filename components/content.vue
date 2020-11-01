@@ -105,7 +105,7 @@ export default {
     },
     showModal(post) {
       post.isHidden = false
-      if (post.userID === this.currentUID) {
+      if (post.userID.id === this.currentUID) {
         this.modalText = '本当にこの投稿を削除してもよろしいですか？'
         this.isDeleteHidden = false
       } else {

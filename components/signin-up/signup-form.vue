@@ -4,7 +4,7 @@
       <i class="fas fa-music fa-7x signin-up__icon"></i>
       <h1 class="signin-up__title">YoutubeMusicShare 会員登録</h1>
 
-      <form class="form" @submit.prevent="createUser()">
+      <form class="form">
         <div class="form__item" :class="{ form__input_empty: isName }">
           <i class="fas fa-user form__icon"></i>
           <input
@@ -48,12 +48,22 @@
             placeholder="パスワードの確認"
           />
         </div>
-        <input type="submit" class="form__btn" value="会員登録" />
-        <button class="form__btn form__btn--google" @click="googleLogin()">
+        <button class="form__btn" @click.prevent="createUser()">
+          会員登録
+        </button>
+        <button
+          class="form__btn form__btn--google"
+          @click.prevent="googleLogin()"
+        >
           <i class="fab fa-google"></i>
           Googleで会員登録する
         </button>
       </form>
+
+      <div class="error" :class="{ error__visible: isVisible }">
+        <h2 class="error__title">エラー</h2>
+        <p class="error__message">{{ errorMessage }}</p>
+      </div>
 
       <div class="signin-up__footer">
         既に会員登録済みの方は
@@ -72,7 +82,10 @@ export default {
       email: '',
       password: '',
       passwordConfirm: '',
-      photoURL: '../../assets/img/mobile-605422_1920.jpg',
+      photoURL:
+        'https://cdn.pixabay.com/photo/2015/01/20/12/51/mobile-605422_960_720.jpg',
+      errorMessage: '',
+      isVisible: false,
       isName: false,
       isEmail: false,
       isPassword: false,
@@ -105,9 +118,12 @@ export default {
         this.password === '' ||
         this.passwordConfirm === ''
       ) {
-        alert('全ての項目を入力してください。')
+        this.isVisible = true
+        this.errorMessage = '全ての項目を入力してください。'
       } else if (this.password !== this.passwordConfirm) {
-        alert('パスワードが間違っています。')
+        this.isVisible = true
+        this.isPasswordConfirm = true
+        this.errorMessage = 'パスワードが間違っています。'
       } else {
         firebase
           .auth()

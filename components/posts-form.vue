@@ -146,6 +146,7 @@ export default {
 
   @include mq-sm {
     background-color: #fff;
+    overflow: visible;
   }
 
   &__form {
