@@ -12,7 +12,7 @@
             to="/my-page"
             class="nav__link"
             active-class="nav__link--active"
-            >マイページ</nuxt-link
+            >Profile</nuxt-link
           >
         </li>
         <li class="nav__item">
@@ -20,32 +20,24 @@
             to="/timeline"
             class="nav__link"
             active-class="nav__link--active"
-            >タイムライン</nuxt-link
+            >TimeLine</nuxt-link
           >
         </li>
         <li class="nav__item">
           <nuxt-link
-            to="/category"
+            to="/posts"
             class="nav__link"
             active-class="nav__link--active"
-            >カテゴリ</nuxt-link
-          >
-        </li>
-        <li class="nav__item">
-          <nuxt-link
-            to="/ranking"
-            class="nav__link"
-            active-class="nav__link--active"
-            >ランキング</nuxt-link
+            >NewPost</nuxt-link
           >
         </li>
         <li class="nav__item nav__item--logout" @click.prevent="logOut()">
-          <a class="nav__link">ログアウト</a>
+          <a class="nav__link">Logout</a>
         </li>
       </ul>
     </nav>
     <button type="button" class="head__logout-btn" @click.prevent="logOut()">
-      ログアウト
+      Logout
     </button>
     <div class="nav__icon" @click="navShow">
       <i class="fas fa-bars fa-2x" style="color: #fff"></i>
@@ -120,6 +112,7 @@ export default {
     background-color: rgb(0, 0, 0);
     border: 2px solid #fff;
     border-radius: 4px;
+    letter-spacing: 1px;
 
     &:hover {
       background-color: #fff;
@@ -129,7 +122,7 @@ export default {
 
   // .head
   @include mq-sm {
-    height: 11%;
+    height: 80px;
 
     &__logo {
       font-size: 2.1rem;
@@ -165,6 +158,7 @@ export default {
     display: block;
     text-align: center;
     line-height: 42px;
+    letter-spacing: 1px;
 
     &:hover {
       border-bottom: 2px solid rgb(0, 123, 255);

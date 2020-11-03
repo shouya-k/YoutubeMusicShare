@@ -1,18 +1,17 @@
 <template>
   <div>
     <Header></Header>
-    <h1 class="title">マイページです。</h1>
-    <PostsIcon></PostsIcon>
+    <MyPageForm></MyPageForm>
   </div>
 </template>
 
 <script>
 import Header from '../components/header'
-import PostsIcon from '../components/posts-icon'
+import MyPageForm from '../components/my-page-form'
 export default {
   components: {
     Header,
-    PostsIcon,
+    MyPageForm,
   },
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <Content :currentUID="currentUID" />
+    <Content />
     <PostsIcon />
   </div>
 </template>

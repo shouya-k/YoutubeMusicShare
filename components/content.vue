@@ -69,35 +69,45 @@
 <script>
 import firebase from '@/plugins/firebase'
 export default {
-  props: ['currentUID'],
   data() {
     return {
       posts: [],
       modalText: '',
       isDeleteHidden: true,
+      currentUID: null,
     }
   },
   created() {
     this.db = firebase.firestore()
+
+    const user = firebase.auth().currentUser
+    if (user) {
+      this.currentUID = user.uid
+    } else {
+      console.log('未認証です。')
+    }
   },
   mounted() {
     const collection = this.db.collection('posts')
 
-    collection.get().then((querySnapshot) => {
-      this.posts = []
-      querySnapshot.forEach((doc) => {
-        const postsData = doc.data()
-        postsData.id = doc.id
-        if (postsData.userID) {
-          postsData.userID.get().then((res) => {
-            postsData.popup = true
-            postsData.isHidden = true
-            postsData.userData = res.data()
-            this.posts.push(postsData)
-          })
-        }
+    collection
+      .orderBy('createdAt', 'desc')
+      .get()
+      .then((querySnapshot) => {
+        this.posts = []
+        querySnapshot.forEach((doc) => {
+          const postsData = doc.data()
+          postsData.id = doc.id
+          if (postsData.userID) {
+            postsData.userID.get().then((res) => {
+              postsData.popup = true
+              postsData.isHidden = true
+              postsData.userData = res.data()
+              this.posts.push(postsData)
+            })
+          }
+        })
       })
-    })
   },
   methods: {
     togglePopup(posts) {
