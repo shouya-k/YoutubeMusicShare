@@ -1,21 +1,18 @@
 <template>
   <div>
     <Header />
-    <Content :currentUID="currentUID" />
-    <PostsIcon />
+    <Content />
   </div>
 </template>
 
 <script>
 import firebase from '@/plugins/firebase'
-import Header from '../components/header'
-import Content from '../components/content'
-import PostsIcon from '../components/posts-icon'
+import Header from '~/components/layouts/header'
+import Content from '~/components/contents/content'
 export default {
   components: {
     Header,
     Content,
-    PostsIcon,
   },
   data() {
     return {
@@ -47,7 +44,9 @@ export default {
             user.providerData.forEach(function (profile) {
               collection.doc(user.uid).set(
                 {
-                  createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                  createdAt: new Date().toLocaleString({
+                    timeZone: 'Asia/Tokyo',
+                  }),
                   signProvider: profile.providerId,
                   email: profile.email,
                   displayName: profile.displayName,

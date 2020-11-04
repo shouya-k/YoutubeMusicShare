@@ -5,10 +5,10 @@
     <nav class="nav">
       <ul class="nav__menu">
         <li class="nav__item">
-          <nuxt-link to="/signin" class="nav__link">サインイン</nuxt-link>
+          <nuxt-link to="/signin" class="nav__link">Signin</nuxt-link>
         </li>
         <li class="nav__item">
-          <nuxt-link to="/signup" class="nav__link">サインアップ</nuxt-link>
+          <nuxt-link to="/signup" class="nav__link">Signup</nuxt-link>
         </li>
       </ul>
     </nav>
@@ -20,7 +20,7 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/sass/_variables';
+@import '~/assets/sass/_variables';
 
 .head {
   display: flex;
@@ -34,6 +34,10 @@ export default {}
   width: 100%;
   height: 12%;
   z-index: 3;
+
+  @include mq-sm {
+    height: 80px;
+  }
 
   &__logo {
     padding: 0 10px;
@@ -65,6 +69,7 @@ export default {}
     margin: 0 15px;
     border: 2px solid #fff;
     border-radius: 4px;
+    padding: 0 5px;
 
     @include mq-sm {
       font-size: 1.2rem;
@@ -80,6 +85,7 @@ export default {}
     display: block;
     text-align: center;
     line-height: 40px;
+    letter-spacing: 1px;
   }
   &__link:hover {
     color: rgb(0, 0, 0);

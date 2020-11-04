@@ -106,7 +106,9 @@ export default {
 
       collection
         .add({
-          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          createdAt: new Date().toLocaleString({
+            timeZone: 'Asia/Tokyo',
+          }),
           url: this.getURL(this.posts.url),
           name: this.posts.name,
           message: this.posts.message,
@@ -135,7 +137,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/_variables';
+@import '~/assets/sass/_variables';
 .posts {
   overflow: hidden;
   height: 100%;
