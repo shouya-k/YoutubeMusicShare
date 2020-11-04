@@ -8,9 +8,9 @@
 
 <script>
 import firebase from '@/plugins/firebase'
-import Header from '../components/header'
-import Content from '../components/content'
-import PostsIcon from '../components/posts-icon'
+import Header from '../components/layouts/header'
+import Content from '../components/contents/content'
+import PostsIcon from '../components/parts/plus-icon'
 export default {
   components: {
     Header,

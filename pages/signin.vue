@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import Header from '../components/signin-up/header'
-import Form from '../components/signin-up/signin-form'
+import Header from '../components/layouts/auth-header'
+import Form from '../components/contents/signin-form'
 export default {
   components: {
     Header,

@@ -7,8 +7,8 @@
 
 <script>
 import firebase from '@/plugins/firebase'
-import Header from '../components/header'
-import Form from '../components/posts-form'
+import Header from '../components/layouts/header'
+import Form from '../components/contents/posts-form'
 export default {
   components: {
     Header,

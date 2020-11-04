@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import Header from '../components/header'
-import MyPageForm from '../components/my-page-form'
+import Header from '../components/layouts/header'
+import MyPageForm from '../components/contents/my-page-form'
 export default {
   components: {
     Header,
