@@ -85,6 +85,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/sass/_variables';
-@import '../../assets/sass/_signin-up';
+@import '~/assets/sass/_variables';
+@import '~/assets/sass/_signin-up';
 </style>

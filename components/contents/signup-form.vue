@@ -134,7 +134,9 @@ export default {
 
             collection.doc(result.user.uid).set(
               {
-                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                createdAt: new Date().toLocaleString({
+                  timeZone: 'Asia/Tokyo',
+                }),
                 email: this.email,
                 displayName: this.name,
                 photoURL: this.photoURL,
@@ -153,6 +155,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/sass/_variables';
-@import '../../assets/sass/_signin-up';
+@import '~/assets/sass/_variables';
+@import '~/assets/sass/_signin-up';
 </style>

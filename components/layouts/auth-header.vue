@@ -20,7 +20,7 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/sass/_variables';
+@import '~/assets/sass/_variables';
 
 .head {
   display: flex;

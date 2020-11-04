@@ -75,6 +75,7 @@ export default {
       modalText: '',
       isDeleteHidden: true,
       currentUID: null,
+      db: null,
     }
   },
   created() {
@@ -145,7 +146,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/_variables';
+@import '~/assets/sass/_variables';
 
 .main {
   width: 100%;
