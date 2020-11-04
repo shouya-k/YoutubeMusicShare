@@ -9,7 +9,7 @@
       <ul class="nav__menu">
         <li class="nav__item">
           <nuxt-link
-            to="/my-page"
+            to="/profile"
             class="nav__link"
             active-class="nav__link--active"
             >Profile</nuxt-link

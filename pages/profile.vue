@@ -1,18 +1,18 @@
 <template>
   <div>
     <Header></Header>
-    <MyPageForm></MyPageForm>
+    <ProfileForm></ProfileForm>
   </div>
 </template>
 
 <script>
 import firebase from '@/plugins/firebase'
 import Header from '~/components/layouts/header'
-import MyPageForm from '~/components/contents/my-page-form'
+import ProfileForm from '~/components/contents/profile-form'
 export default {
   components: {
     Header,
-    MyPageForm,
+    ProfileForm,
   },
 }
 </script>

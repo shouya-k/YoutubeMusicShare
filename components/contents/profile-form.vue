@@ -142,6 +142,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~/assets/sass/_variables';
 .profile {
   overflow: hidden;
   width: 100%;
@@ -150,11 +151,22 @@ export default {
   top: 0;
   background-color: rgb(216, 216, 216);
 
+  @include mq-sm {
+    overflow: visible;
+    background-color: #fff;
+    min-height: 600px;
+  }
+
   &__inner {
     width: 30%;
     margin: 160px auto 0;
     text-align: center;
     font-size: 1.6rem;
+
+    @include mq-sm {
+      width: 80%;
+      margin: 120px auto;
+    }
   }
 
   &__title {
