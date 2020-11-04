@@ -2,42 +2,143 @@
   <div class="profile">
     <div class="profile__inner">
       <h1 class="profile__title">プロフィール</h1>
-      <form class="form">
+      <form
+        class="form"
+        v-for="user in users"
+        :key="user.id"
+        @submit.prevent="updateUser"
+      >
         <div class="form__images">
-          <img
-            class="form__image"
-            src="../assets/img/mobile-605422_1920.jpg"
-            alt=""
-          />
+          <img v-if="image" class="form__image" :src="image" alt="" />
+          <img v-else class="form__image" :src="user.photoURL" alt="" />
+
           <label class="form__file"
             ><i class="fas fa-camera"></i>
             <input
               type="file"
-              name="photo"
-              accept="image/*"
+              @change="onImageUploaded"
               style="display: none"
             />
           </label>
         </div>
-        <p class="form__created-at">アカウントの作成: 2020.11.03</p>
+        <p class="form__created-at">アカウントの作成: {{ user.createdAt }}</p>
         <p class="form__label">ユーザー名</p>
         <div class="form__item">
           <i class="fas fa-edit form__icon"></i>
-          <input class="form__input" type="text" placeholder="shouya" />
+          <input
+            v-model="name"
+            class="form__input"
+            type="text"
+            :placeholder="user.displayName"
+          />
+          <button class="form__submit" @click.prevent="updateName">更新</button>
         </div>
         <p class="form__label">Eメールアドレス</p>
         <div class="form__item">
           <i class="fas fa-envelope form__icon"></i>
-          <input class="form__input" type="email" placeholder="test@test.com" />
+          <input
+            v-model="email"
+            class="form__input"
+            type="email"
+            :placeholder="user.email"
+          />
+          <button
+            class="form__submit"
+            @click.prevent="updateEmail(user.signProvider)"
+          >
+            更新
+          </button>
         </div>
-        <input class="form__submit" type="submit" value="更新" />
       </form>
+
+      <div class="error" :class="{ error__visible: isVisible }">
+        <h2 class="error__title">エラー</h2>
+        <p class="error__message">{{ errorMessage }}</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import firebase from '@/plugins/firebase'
+export default {
+  data() {
+    return {
+      currentUID: null,
+      db: null,
+      users: [],
+      uploadImage: false,
+      image: null,
+      name: '',
+      email: '',
+      isVisible: false,
+      errorMessage: '',
+    }
+  },
+  mounted() {
+    this.db = firebase.firestore()
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.currentUID = user.uid
+        const docRef = this.db.collection('users').doc(user.uid)
+
+        docRef.get().then((doc) => {
+          const userData = doc.data()
+          this.users.push(userData)
+        })
+      } else {
+        console.log('未認証')
+      }
+    })
+  },
+  methods: {
+    onImageUploaded(e) {
+      const image = e.target.files[0]
+      this.createImage(image)
+    },
+    createImage(image) {
+      const reader = new FileReader()
+      reader.readAsDataURL(image)
+      reader.onload = () => {
+        this.image = reader.result
+
+        const docRef = this.db.collection('users').doc(this.currentUID)
+        docRef.update({
+          photoURL: this.image,
+        })
+      }
+    },
+    updateName() {
+      if (this.name !== '') {
+        const docRef = this.db.collection('users').doc(this.currentUID)
+        docRef
+          .update({
+            displayName: this.name,
+          })
+          .then(() => {
+            location.reload()
+          })
+      }
+    },
+    updateEmail(login) {
+      if (login === 'google.com') {
+        this.isVisible = true
+        this.errorMessage =
+          'googleログインのユーザはメールアドレスを変更出来ません。'
+      } else if (this.email !== '') {
+        const docRef = this.db.collection('users').doc(this.currentUID)
+        docRef
+          .update({
+            email: this.email,
+          })
+          .then(() => {
+            location.reload()
+          })
+      }
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -51,7 +152,7 @@ export default {}
 
   &__inner {
     width: 30%;
-    margin: 180px auto 0;
+    margin: 160px auto 0;
     text-align: center;
     font-size: 1.6rem;
   }
@@ -66,6 +167,7 @@ export default {}
 
 .form {
   padding: 20px 20px 10px;
+  margin-bottom: 20px;
   background-color: #fff;
   border: 1px solid rgba(34, 36, 38, 0.15);
   border-radius: 4px;
@@ -82,6 +184,7 @@ export default {}
     width: 180px;
     height: 180px;
     border-radius: 50%;
+    border: 1px solid rgba(34, 36, 38, 0.15);
     margin: 0 auto;
   }
 
@@ -99,7 +202,7 @@ export default {}
 
   &__created-at {
     color: rgb(160, 158, 158);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
   }
 
   &__label {
@@ -109,9 +212,9 @@ export default {}
 
   &__item {
     display: flex;
+    width: 100%;
     font-size: 1.4rem;
-    padding: 6px 0;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     border: 1px solid rgba(34, 36, 38, 0.15);
     border-radius: 6px;
   }
@@ -121,32 +224,53 @@ export default {}
   }
 
   &__input {
+    width: 80%;
     outline: 0;
-    width: 100%;
     border: 0;
     padding: 5px;
     box-sizing: border-box;
     font-size: 14px;
-
-    &_empty {
-      background-color: #fdd9d6;
-    }
   }
 
   &__submit {
-    width: 30%;
-    margin: 0 auto 20px;
+    width: 20%;
+    display: block;
     font-size: 1.8rem;
-    color: #000000;
+    color: rgba(34, 36, 38, 0.8);
     padding: 5px 0;
     background-color: #fff;
-    border: 1px solid rgba(34, 36, 38, 1);
+    border: 1px solid rgba(34, 36, 38, 0.5);
     border-radius: 6px;
 
     &:hover {
       color: #fff;
-      background-color: #000000;
+      background-color: rgba(34, 36, 38, 0.8);
     }
+  }
+}
+
+.error {
+  display: none;
+  color: #9f3a39;
+  background-color: #fff6f6;
+  padding: 15px 0;
+  margin-bottom: 15px;
+  border: 1px solid #e0b5b4;
+  border-radius: 4px;
+
+  &__title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0 10px 15px;
+  }
+
+  &__message {
+    font-size: 1.4rem;
+    margin: 0 10px;
+  }
+
+  &__visible {
+    display: block;
   }
 }
 </style>
