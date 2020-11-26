@@ -1,5 +1,7 @@
 # my-website
 
+https://nuxt-website01-9fe05.web.app/
+
 ## Build Setup
 
 ```bash
