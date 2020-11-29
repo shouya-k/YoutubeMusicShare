@@ -1,22 +1,30 @@
-# my-website
+# Youtube Music Share
+
+## サイトの概要 / Overview
+
+このサイトはYoutubeの音楽動画をシェアするサイトです。
+Youtubeの共有リンクから動画URLを取得する事で簡単にサイト上で共有することが出来ます。
+
+![myapp01](https://user-images.githubusercontent.com/65233189/100533124-33040b00-3244-11eb-91d5-4ab65b972da5.gif)
+
+## リリースURL / DemoURL
 
 https://nuxt-website01-9fe05.web.app/
 
-## Build Setup
+## テストアカウント / TestAccount
 
-```bash
-# install dependencies
-$ yarn install
+email: test01@test.com
+パスワード: password01
 
-# serve with hot reload at localhost:3000
-$ yarn dev
+### 注意点
 
-# build for production and launch server
-$ yarn build
-$ yarn start
+テストアカウントでログインした際GoogleChromeの警告メッセージが表示される場合があります。
+これはテスト用の分かりやすいパスワードを設定しているため出てしまうだけなので気にしないで下さい。
 
-# generate static project
-$ yarn generate
-```
+<img width="600" alt="スクリーンショット 2020-11-29 12 41 08" src="https://user-images.githubusercontent.com/65233189/100533286-1a94f000-3246-11eb-912f-4391e423db44.png">
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+## 使用技術 / Technology
+
+* Nuxt.js
+
+* Firebase(auth, firestore, hosting)
